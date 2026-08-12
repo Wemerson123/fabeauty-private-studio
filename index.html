@@ -85,12 +85,18 @@
   @media(max-width:900px){.about{grid-template-columns:1fr;gap:90px;padding:120px 6vw}.about__media img{height:420px}.about__badge{left:0;right:auto;bottom:-28px}}
 
   /* ---------- Glow moment ---------- */
-  .glow{position:relative;min-height:74vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--emerald-deep);color:var(--cream);text-align:center}
-  .glow__canvas{position:absolute;inset:0;width:100%;height:100%}
-  .glow__veil{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 0%,rgba(17,37,29,.35) 55%,rgba(17,37,29,.85) 100%)}
+  .glow{position:relative;height:220vh;background:var(--emerald-deep);color:var(--cream)}
+  .glow__stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;isolation:isolate;text-align:center}
+  .glow__film,.glow__canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.28) saturate(.8) hue-rotate(-8deg) brightness(.8) contrast(1.06);transition:opacity .8s ease}
+  .glow__canvas{opacity:0}
+  .glow__canvas.is-ready{opacity:1}
+  .glow__film.is-hidden{opacity:0}
+  .glow__veil{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 640px 340px at 50% 68%,rgba(10,20,16,.72) 0%,rgba(10,20,16,.45) 60%,transparent 100%),radial-gradient(ellipse at 50% 55%,transparent 0%,rgba(17,37,29,.3) 55%,rgba(17,37,29,.88) 100%)}
   .glow__content{position:relative;z-index:2;max-width:780px;padding:0 6vw}
   .glow h2{font-size:clamp(34px,5.4vw,72px);line-height:1.12;font-style:italic;font-weight:400;margin:0}
   .glow p{margin:26px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);opacity:.9}
+  @media(max-width:760px){.glow{height:180vh}}
+  @media(prefers-reduced-motion:reduce){.glow{height:100vh}}
 
   /* ---------- Services ---------- */
   .services{padding:150px 5vw;max-width:1280px;margin:0 auto}
@@ -198,12 +204,17 @@
   </div>
 </section>
 
-<section class="glow">
-  <canvas class="glow__canvas" id="glowCanvas"></canvas>
-  <div class="glow__veil"></div>
-  <div class="glow__content">
-    <h2 data-reveal>&ldquo;Every detail is focused on enhancing your natural beauty.&rdquo;</h2>
-    <p data-reveal class="d1">Fabiana &middot; Fabeauty Private Studio</p>
+<section class="glow" id="glow">
+  <div class="glow__stage">
+    <video class="glow__film" id="glowFilm" muted playsinline preload="auto" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_230900_ef8565a6-16eb-4fe9-98e4-4b972d3f436d.mp4" type="video/mp4">
+    </video>
+    <canvas class="glow__canvas" id="glowCanvas" aria-hidden="true"></canvas>
+    <div class="glow__veil"></div>
+    <div class="glow__content">
+      <h2 data-reveal>&ldquo;Every detail is focused on enhancing your natural beauty.&rdquo;</h2>
+      <p data-reveal class="d1">Fabiana &middot; Fabeauty Private Studio</p>
+    </div>
   </div>
 </section>
 
@@ -382,78 +393,112 @@
     swirlIo.observe(document.getElementById('swirlGrid'));
   }
 
-  // ---- Ambient glow canvas: warm gold/blush shimmer over deep emerald ----
-  (function glow() {
-    if (reduced) return;
+  // ---- Glow: scroll-scrubbed brand moment, warm-graded to match the studio palette ----
+  (function glowVideo() {
+    const GLOW_VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_230900_ef8565a6-16eb-4fe9-98e4-4b972d3f436d.mp4';
+    const section = document.getElementById('glow');
+    const film = document.getElementById('glowFilm');
     const canvas = document.getElementById('glowCanvas');
     const ctx = canvas.getContext('2d');
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    let w, h;
 
-    function resize() {
-      w = canvas.clientWidth; h = canvas.clientHeight;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    addEventListener('resize', resize);
+    let frames = [], framesReady = false;
+    let target = 0, smoothed = 0, raf = 0, visible = false, lastSeek = -1;
 
-    const rayCount = 60;
-    const rays = [];
-    for (let i = 0; i < rayCount; i++) rays.push(initRay());
-
-    function initRay() {
-      const goldish = Math.random() > 0.32;
-      return {
-        x: Math.random() * w,
-        length: 100 + Math.random() * 200,
-        life: Math.random() * 100,
-        ttl: 90 + Math.random() * 140,
-        width: 1.5 + Math.random() * 4,
-        speed: (0.03 + Math.random() * 0.06) * (Math.random() > 0.5 ? 1 : -1),
-        hue: goldish ? 34 + Math.random() * 22 : 350 + Math.random() * 14
-      };
+    function sizeCanvas() {
+      const d = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(innerWidth * d);
+      canvas.height = Math.round(innerHeight * d);
     }
 
-    function fadeInOut(t, m) {
-      const hm = 0.5 * m;
-      return Math.abs(((t + hm) % m) - hm) / hm;
+    function drawCover(source, sw, sh) {
+      const scale = Math.max(canvas.width / sw, canvas.height / sh);
+      const dw = sw * scale, dh = sh * scale;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(source, (canvas.width - dw) / 2, (canvas.height - dh) / 2, dw, dh);
     }
 
-    let raf;
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      const cy = h * 0.52;
+    function tick() {
+      raf = 0;
+      smoothed += (target - smoothed) * (reduced ? 1 : 0.12);
+      if (framesReady && frames.length) {
+        const idx = Math.min(frames.length - 1, Math.max(0, Math.round(smoothed * (frames.length - 1))));
+        const frame = frames[idx];
+        if (frame) drawCover(frame, frame.width, frame.height);
+      } else if (film.duration) {
+        const desired = smoothed * Math.max(film.duration - 0.05, 0);
+        if (Math.abs(desired - lastSeek) > 0.04) { lastSeek = desired; film.currentTime = desired; }
+      }
+      if (visible && Math.abs(target - smoothed) > 0.0005) raf = requestAnimationFrame(tick);
+    }
 
-      rays.forEach(r => {
-        const y1 = cy + 60;
-        const y2 = cy + 60 - r.length;
-        const grad = ctx.createLinearGradient(r.x, y1, r.x, y2);
-        const alpha = fadeInOut(r.life, r.ttl) * 0.42;
-        grad.addColorStop(0, `hsla(${r.hue},70%,72%,0)`);
-        grad.addColorStop(0.5, `hsla(${r.hue},70%,72%,${alpha})`);
-        grad.addColorStop(1, `hsla(${r.hue},70%,72%,0)`);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = r.width;
-        ctx.beginPath();
-        ctx.moveTo(r.x, y1);
-        ctx.lineTo(r.x, y2);
-        ctx.stroke();
+    function onScroll() {
+      const range = section.offsetHeight - innerHeight;
+      target = range > 0 ? Math.min(1, Math.max(0, -section.getBoundingClientRect().top / range)) : 0;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
 
-        r.x += r.speed * 40;
-        r.life++;
-        if (r.x < -50 || r.x > w + 50 || r.life > r.ttl) Object.assign(r, initRay(), { x: Math.random() * w });
+    sizeCanvas();
+    addEventListener('resize', sizeCanvas);
+    addEventListener('scroll', onScroll, { passive: true });
+    film.addEventListener('loadeddata', onScroll, { once: true });
+
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !raf) raf = requestAnimationFrame(tick);
+    }, { rootMargin: '15%' }).observe(section);
+
+    // Frame cache: extracted from a same-origin blob copy so canvas reads never taint.
+    async function extractFrames() {
+      let blob;
+      try {
+        const res = await fetch(GLOW_VIDEO_URL);
+        blob = await res.blob();
+      } catch { return; }
+
+      const url = URL.createObjectURL(blob);
+      const off = document.createElement('video');
+      off.src = url; off.muted = true; off.playsInline = true; off.preload = 'auto';
+
+      await new Promise((resolve) => {
+        off.addEventListener('loadedmetadata', resolve, { once: true });
+        off.addEventListener('error', resolve, { once: true });
       });
+      if (!off.duration) { URL.revokeObjectURL(url); return; }
 
-      raf = requestAnimationFrame(draw);
+      const count = Math.min(90, Math.max(30, Math.round(off.duration * 20)));
+      const width = Math.min(1000, off.videoWidth || 1000);
+      const height = Math.round(width * ((off.videoHeight / off.videoWidth) || 0.5625));
+      const scratch = document.createElement('canvas');
+      scratch.width = width; scratch.height = height;
+      const sctx = scratch.getContext('2d');
+
+      const bitmaps = [];
+      for (let i = 0; i < count; i++) {
+        const time = (i / (count - 1)) * Math.max(off.duration - 0.05, 0);
+        await new Promise((resolve) => {
+          const onSeeked = () => { off.removeEventListener('seeked', onSeeked); resolve(); };
+          off.addEventListener('seeked', onSeeked);
+          off.currentTime = time;
+        });
+        sctx.drawImage(off, 0, 0, width, height);
+        try { bitmaps.push(await createImageBitmap(scratch)); } catch { break; }
+      }
+      URL.revokeObjectURL(url);
+
+      if (bitmaps.length > 1) {
+        frames = bitmaps;
+        framesReady = true;
+        canvas.classList.add('is-ready');
+        film.classList.add('is-hidden');
+        raf = raf || requestAnimationFrame(tick);
+      }
     }
 
-    const glowSection = document.querySelector('.glow');
-    const glowIo = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !raf) draw();
-      else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = null; }
-    }, { threshold: 0.05 });
-    glowIo.observe(glowSection);
+    if (!reduced) {
+      new IntersectionObserver((es, obs) => {
+        if (es[0].isIntersecting) { extractFrames(); obs.disconnect(); }
+      }, { rootMargin: '100% 0px' }).observe(section);
+    }
   })();
 </script>
 </body>
