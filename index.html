@@ -48,7 +48,7 @@
 
   /* ---------- Nav ---------- */
   nav{position:fixed;top:0;inset-inline:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;transition:background .4s ease,box-shadow .4s ease}
-  nav.scrolled{background:rgba(250,245,236,.9);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(43,36,25,.08)}
+  nav.scrolled{backdrop-filter:blur(10px)}
   .wordmark{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.14em;text-decoration:none;color:var(--ink)}
   .nav-links{display:flex;align-items:center;gap:38px}
   .nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:.75;transition:opacity .3s}
@@ -131,10 +131,11 @@
   .rail-section .section-head{padding:0 6vw}
   .rail-section .section-head h2{color:var(--cream)}
   .rail-section .section-head h2 em{color:var(--gold-light)}
-  .rail{display:flex;gap:18px;overflow-x:auto;padding:0 5vw 12px;scroll-snap-type:x mandatory}
-  .rail img{flex:0 0 340px;height:440px;object-fit:cover;scroll-snap-align:start}
-  .rail::-webkit-scrollbar{height:3px}
-  .rail::-webkit-scrollbar-thumb{background:var(--gold)}
+  .rail-viewport{overflow:hidden;padding:0 0 12px}
+  .rail{display:flex;gap:18px;width:max-content;padding:0 5vw;cursor:grab;touch-action:pan-y}
+  .rail.is-dragging{cursor:grabbing}
+  .rail img{flex:0 0 340px;height:440px;object-fit:cover;pointer-events:none;user-select:none}
+  @media(max-width:760px){.rail img{flex-basis:240px;height:320px}}
 
   /* ---------- Reviews ---------- */
   .reviews{padding:150px 5vw;max-width:1100px;margin:0 auto;text-align:center}
@@ -285,16 +286,27 @@
     <div class="eyebrow" style="justify-content:center" data-reveal>Inside Fabeauty</div>
     <h2 data-reveal class="d1">A private studio,<br><em>designed to slow down in.</em></h2>
   </div>
-  <div class="rail" id="rail">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773198/f35a1e2f-aa94-4624-b5ce-ae2886e78903-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773199/baa8836e-e9b3-407b-b887-32dc441ed4cd-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773200/a9c87963-985f-41c1-b51f-adcb126172d5-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773201/966ee801-f30e-470c-944c-e5044b2d992f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773202/fbe5ac9c-bbef-4623-b7c0-9911379cffda-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773203/d19e274f-f750-4ba8-a5ba-48af5bb00795-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio">
+  <div class="rail-viewport">
+    <div class="rail" id="rail">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773198/f35a1e2f-aa94-4624-b5ce-ae2886e78903-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773199/baa8836e-e9b3-407b-b887-32dc441ed4cd-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773200/a9c87963-985f-41c1-b51f-adcb126172d5-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773201/966ee801-f30e-470c-944c-e5044b2d992f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773202/fbe5ac9c-bbef-4623-b7c0-9911379cffda-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773203/d19e274f-f750-4ba8-a5ba-48af5bb00795-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773198/f35a1e2f-aa94-4624-b5ce-ae2886e78903-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773199/baa8836e-e9b3-407b-b887-32dc441ed4cd-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773200/a9c87963-985f-41c1-b51f-adcb126172d5-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773201/966ee801-f30e-470c-944c-e5044b2d992f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773202/fbe5ac9c-bbef-4623-b7c0-9911379cffda-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773203/d19e274f-f750-4ba8-a5ba-48af5bb00795-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+    </div>
   </div>
 </section>
 
@@ -499,6 +511,72 @@
         if (es[0].isIntersecting) { extractFrames(); obs.disconnect(); }
       }, { rootMargin: '100% 0px' }).observe(section);
     }
+  })();
+
+  // ---- Studio rail: auto-crawling marquee with drag + inertia physics ----
+  (function railMarquee() {
+    const track = document.getElementById('rail');
+    if (!track) return;
+    const SPEED = 0.5;
+
+    let offset = 0, velocity = 0, dragging = false;
+    let dragStartX = 0, dragStartOffset = 0, lastX = 0, lastTime = 0;
+    let rafId = 0;
+
+    function tick() {
+      const halfWidth = track.scrollWidth / 2;
+
+      if (!dragging) {
+        if (Math.abs(velocity) > 0.1) {
+          offset += velocity;
+          velocity *= 0.95;
+        } else {
+          velocity = 0;
+          offset -= SPEED;
+        }
+      }
+
+      if (offset <= -halfWidth) offset += halfWidth;
+      if (offset > 0) offset -= halfWidth;
+
+      track.style.transform = `translate3d(${offset}px,0,0)`;
+      rafId = requestAnimationFrame(tick);
+    }
+
+    if (reduced) {
+      track.style.transform = 'translate3d(0,0,0)';
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+
+    track.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      velocity = 0;
+      dragStartX = e.clientX;
+      dragStartOffset = offset;
+      lastX = e.clientX;
+      lastTime = performance.now();
+      track.classList.add('is-dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const now = performance.now();
+      const dt = Math.max(now - lastTime, 1);
+      const dx = e.clientX - lastX;
+      velocity = (dx / dt) * 16;
+      offset = dragStartOffset + (e.clientX - dragStartX);
+      lastX = e.clientX;
+      lastTime = now;
+    });
+
+    function endDrag() {
+      dragging = false;
+      track.classList.remove('is-dragging');
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
   })();
 </script>
 </body>
