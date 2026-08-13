@@ -1,39 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.remove('no-js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fabeauty Private Studio — Natural Beauty, Considered.</title>
 <meta name="description" content="A private beauty studio in Maroochydore. Nails, brows &amp; lashes, facials and massage — every detail focused on your natural beauty. Book on Fresha.">
+<meta name="theme-color" content="#08211B">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
+<link rel="canonical" href="https://wemerson123.github.io/fabeauty-private-studio/">
+<!-- Share cards: this clientele lives on WhatsApp/Instagram — the link must
+     unfurl with the room photo, not as a bare URL. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fabeauty Private Studio">
+<meta property="og:title" content="Fabeauty Private Studio — Natural Beauty, Considered.">
+<meta property="og:description" content="A private beauty studio in Maroochydore. Nails, brows &amp; lashes, facials and massage. Book on Fresha.">
+<meta property="og:url" content="https://wemerson123.github.io/fabeauty-private-studio/">
+<meta property="og:image" content="https://wemerson123.github.io/fabeauty-private-studio/assets/gallery/final/studio-hero-room.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="905">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Fabeauty Private Studio",
+  "description": "A private beauty studio in Maroochydore — nails, brows & lashes, facials and massage.",
+  "url": "https://wemerson123.github.io/fabeauty-private-studio/",
+  "image": "https://wemerson123.github.io/fabeauty-private-studio/assets/gallery/final/studio-hero-room.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "64 Anzac Avenue, Unit 2",
+    "addressLocality": "Maroochydore",
+    "addressRegion": "QLD",
+    "addressCountry": "AU"
+  },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "184" },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "10:00", "closes": "19:00"
+  }],
+  "priceRange": "$$",
+  "sameAs": ["https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#faf5ec;
-    --cream-deep:#f1e7d6;
-    --ink:#2b2419;
-    --emerald:#1f4638;
-    --emerald-deep:#11251d;
-    --gold:#c8a04f;
-    --gold-light:#e8cf9a;
-    --blush:#d9a9a0;
+    /* Palette drawn from the studio itself: emerald velvet chairs, brushed
+       gold legs, honey wood floors, bone walls. Warm — never green-tinted. */
+    --cream:#F5F1E8;
+    --cream-deep:#EAE2D2;
+    --ink:#1A1612;
+    --ink-soft:#5C5346;
+    --emerald:#12503E;
+    --emerald-deep:#08211B;
+    --emerald-mid:#0E3A2E;
+    --emerald-glow:#1E7A5C;
+    --gold:#A8854A;
+    --gold-light:#E4CB99;
+    --blush:#D9A9A0;
     --white:#ffffff;
     --ease:cubic-bezier(.16,1,.3,1);
+    --ease-out:cubic-bezier(.22,1,.36,1);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
   h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:400}
   a{color:inherit}
   img{max-width:100%;display:block}
-  ::selection{background:var(--gold);color:var(--white)}
+  ::selection{background:var(--gold-light);color:var(--ink)}
+  /* Film grain — the single cheapest thing that stops flat colour fields from
+     reading as "default CSS". Sits above everything, catches no pointer events. */
+  body:after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
   .eyebrow{display:flex;align-items:center;gap:12px;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
   .eyebrow:before{content:"";width:26px;height:1px;background:var(--gold)}
 
   .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .4s var(--ease)}
-  .btn-solid{background:var(--emerald);color:var(--cream)}
-  .btn-solid:hover{background:var(--ink)}
+  /* Neutral elevation, not a gold halo: a chromatic glow on the dark hero ground
+     is the stock "AI UI" look and fights the restraint the rest of the page keeps. */
+  .btn-solid{background:var(--emerald);color:var(--cream);box-shadow:0 0 0 0 rgba(8,33,27,0)}
+  .btn-solid:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(8,33,27,.55)}
   .btn-outline{border:1px solid rgba(43,36,25,.3);color:var(--ink)}
   .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:var(--cream)}
   .btn-cream{border:1px solid rgba(250,245,236,.4);color:var(--cream)}
@@ -46,115 +98,246 @@
   [data-reveal].d3{transition-delay:.3s}
   [data-reveal].d4{transition-delay:.4s}
 
+  /* ---------- Brand intro ----------
+     Runs on the same emerald as the hero, so the curtain lift reveals the page
+     rather than cutting to a different colour. Skippable; removes itself on a
+     timer even if the animationend never fires, so it can never trap the page. */
+  .intro{position:fixed;inset:0;z-index:200;background:var(--emerald-deep);display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;overflow:hidden;transition:opacity .9s var(--ease),transform 1s var(--ease)}
+  .intro[hidden]{display:none}
+  .intro.is-out{opacity:0;transform:translateY(-2.5%);pointer-events:none}
+  /* Artwork holds the frame alone for the first ~2.2s, then the veil deepens and
+     the logo arrives — a sequence, so the face and the mark never fight for the
+     same focal point. Emerald stays underneath, so a slow connection never sees
+     a black hole: the film only fades in once it can actually play. */
+  .intro__film{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 1.1s ease}
+  .intro__film.is-ready{opacity:1}
+  .intro__film video{width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block}
+  /* Bottom-weighted, not centred: the artwork keeps the upper frame and the mark
+     sits in the lower third, so the logo never lands on the figure's face. */
+  .intro__veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,33,27,.30) 0%,rgba(8,33,27,.18) 28%,rgba(8,33,27,.72) 62%,rgba(8,33,27,.93) 100%);opacity:.35;animation:introVeil 1.3s var(--ease) 2.2s forwards}
+  .intro__mark{position:relative;z-index:2;margin-top:auto;margin-bottom:clamp(84px,15vh,150px);display:flex;flex-direction:column;align-items:center;gap:clamp(16px,2.4vh,28px)}
+  .intro__logo{width:clamp(190px,26vw,310px);height:auto;filter:brightness(0) invert(1);opacity:0;transform:scale(.94);animation:introLogo 1.4s var(--ease) 2.4s forwards}
+  .intro__rule{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);animation:introRule 1.4s var(--ease) 2.3s forwards}
+  .intro__tag{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:rgba(228,203,153,.75);opacity:0;animation:introTag 1.1s var(--ease) 3.3s forwards}
+  .intro__skip{position:absolute;z-index:2;bottom:clamp(26px,5vh,44px);left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,241,232,.4);opacity:0;animation:introTag .8s ease 3.2s forwards}
+  @keyframes introLogo{to{opacity:1;transform:scale(1)}}
+  @keyframes introRule{to{width:clamp(150px,22vw,260px)}}
+  @keyframes introTag{to{opacity:1}}
+  @keyframes introVeil{to{opacity:1}}
+  /* Reduced motion: no film, no scale/draw — the static poster and mark only. */
+  @media(prefers-reduced-motion:reduce){
+    .intro__logo,.intro__tag,.intro__skip{animation:none;opacity:1;transform:none}
+    .intro__rule{animation:none;width:clamp(150px,22vw,260px)}
+    .intro__veil{animation:none;opacity:1}
+    .intro{transition:opacity .4s linear}
+  }
+  /* Without JS the overlay must never persist. */
+  html.no-js .intro{display:none}
+
   /* ---------- Nav ---------- */
-  nav{position:fixed;top:0;inset-inline:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;transition:background .4s ease,box-shadow .4s ease}
-  nav.scrolled{backdrop-filter:blur(10px)}
-  .wordmark{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.14em;text-decoration:none;color:var(--ink)}
+  nav{--nav-fg:var(--cream);--nav-fg-contrast:var(--ink);position:fixed;top:0;inset-inline:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;transition:background .4s ease,box-shadow .4s ease}
+  nav.on-light{--nav-fg:var(--ink);--nav-fg-contrast:var(--cream)}
+  nav.scrolled{backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);background:rgba(35,47,30,.4)}
+  nav.scrolled.on-light{background:rgba(250,245,236,.78);box-shadow:0 1px 0 rgba(43,36,25,.08)}
+  /* The logo is a single full-colour PNG. Its line art is near-black, so on the
+     dark grounds it's flipped to a white reverse lockup — the semi-transparent
+     wing fills survive as soft grey, which keeps the mark's delicacy. */
+  .wordmark{display:block;text-decoration:none;line-height:0}
+  .wordmark img{width:auto;height:clamp(38px,4.4vw,52px);filter:brightness(0) invert(1);transition:filter .4s ease}
+  nav.on-light .wordmark img{filter:none}
   .nav-links{display:flex;align-items:center;gap:38px}
-  .nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:.75;transition:opacity .3s}
+  .nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--nav-fg);opacity:.75;transition:opacity .3s,color .4s ease}
   .nav-links a:hover{opacity:1}
-  .nav-book{padding:12px 22px;font-size:10.5px}
+  .nav-book{padding:12px 22px;font-size:10.5px;border:1px solid var(--nav-fg);color:var(--nav-fg);transition:all .4s var(--ease)}
+  .nav-book:hover{background:var(--nav-fg);color:var(--nav-fg-contrast)}
   @media(max-width:860px){.nav-links a:not(.nav-book){display:none}}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--emerald-deep)}
-  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88}
-  .hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,37,29,.55) 0%,rgba(17,37,29,.15) 32%,rgba(17,37,29,.35) 68%,rgba(17,37,29,.92) 100%)}
-  .hero__content{position:relative;z-index:2;width:100%;padding:0 5vw 90px;color:var(--cream)}
-  .hero__rating{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.1em;color:var(--cream);opacity:.85;margin-bottom:22px}
-  .hero__rating b{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:15px}
-  .hero h1{font-size:clamp(46px,7.2vw,104px);line-height:.98;letter-spacing:-.01em;margin:0 0 26px;max-width:14ch}
-  .hero h1 em{font-style:italic;color:var(--gold-light)}
-  .hero p{font-size:16px;line-height:1.75;color:rgba(250,245,236,.82);max-width:440px;margin:0 0 40px}
-  .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
-  .hero__scroll{position:absolute;z-index:2;right:5vw;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--cream);opacity:.7;font-size:9.5px;letter-spacing:.25em;text-transform:uppercase}
-  .hero__scroll i{width:1px;height:44px;background:linear-gradient(180deg,var(--gold-light),transparent);animation:scrollLine 2.2s ease-in-out infinite}
-  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-  @media(max-width:760px){.hero__scroll{display:none}}
+  /* ---------- Hero ----------
+     Editorial split: copy sits on the emerald ground, photography bleeds off
+     the right edge full-height. The asymmetry (no contained rectangle, no
+     equal columns) is what keeps it from reading as a template hero. */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--emerald-deep)}
+  .hero:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 900px 700px at 12% 30%,rgba(30,122,92,.30) 0%,transparent 62%)}
+  .hero__grid{position:relative;z-index:3;width:100%;max-width:1560px;margin:0 auto;padding:clamp(130px,17vh,190px) 0 clamp(90px,12vh,120px) 6vw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(40px,5vw,80px);align-items:center;color:var(--cream)}
+  .hero__copy{max-width:620px}
+  .hero__rating{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,241,232,.72);margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid rgba(228,203,153,.22)}
+  .hero__rating b{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.02em;text-transform:none}
+  .hero h1{font-size:clamp(46px,7vw,104px);line-height:.94;letter-spacing:-.025em;margin:0 0 30px}
+  .hero h1 em{font-style:italic;color:var(--gold-light);letter-spacing:-.01em}
+  /* Per-line mask reveal: each line rises from behind its own clip. The padding/
+     negative-margin pair gives the serif's ascenders, descenders and italic
+     overhang room inside the clip without shifting layout. */
+  .hero h1[data-reveal]{transform:none}
+  .hero h1 .line{display:block;overflow:hidden;padding:.16em .1em .22em;margin:-.16em -.1em -.22em}
+  .hero h1 .line>span{display:block;transform:translateY(135%);transition:transform 1.15s var(--ease)}
+  .hero h1 .line:nth-child(2)>span{transition-delay:.14s}
+  .hero h1.is-in .line>span{transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){.hero h1 .line>span{transition:none}}
+  .hero p{font-size:clamp(15px,1.15vw,17px);line-height:1.8;color:rgba(245,241,232,.72);max-width:430px;margin:0 0 44px}
+  .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+  /* full-bleed to the right edge — deliberately not a contained card */
+  .hero__media{position:relative;justify-self:stretch;align-self:stretch;min-height:clamp(380px,62vh,680px);margin:clamp(0px,4vh,40px) 0;overflow:hidden}
+  /* 8% vertical overscan feeds the scroll parallax — the image drifts slower
+     than the page, which reads as depth against the emerald ground. */
+  .hero__media img{position:absolute;top:-8%;left:0;width:100%;height:116%;object-fit:cover;object-position:center 42%;will-change:transform}
+  .hero__media:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,33,27,.55) 0%,rgba(8,33,27,.10) 38%,transparent 70%);pointer-events:none}
+  .hero__scroll{position:absolute;z-index:4;left:6vw;bottom:38px;display:flex;align-items:center;gap:14px;color:var(--cream);opacity:.55;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
+  .hero__scroll i{width:52px;height:1px;background:linear-gradient(90deg,var(--gold-light),transparent);animation:scrollLine 2.4s ease-in-out infinite;transform-origin:left}
+  @keyframes scrollLine{0%{transform:scaleX(0);opacity:0}40%{opacity:1}100%{transform:scaleX(1);opacity:0}}
+  @media(max-width:1024px){.hero__grid{grid-template-columns:1fr;padding:130px 6vw 90px;gap:44px}.hero__media{min-height:clamp(300px,44vh,420px);margin:0;width:calc(100% + 6vw)}.hero__copy{max-width:none}}
+  @media(max-width:760px){.hero__scroll{display:none}.hero h1{font-size:clamp(40px,11vw,60px)}}
 
   /* ---------- About ---------- */
   .about{padding:150px 5vw;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:center}
   .about__media{position:relative}
-  .about__media img{width:100%;height:600px;object-fit:cover}
+  /* Offset hairline frame behind the photo — the same device as the muse panel's
+     border, here shifted up-right so the composition gets a second layer. */
+  .about__media:before{content:"";position:absolute;top:-16px;right:-16px;bottom:16px;left:16px;border:1px solid rgba(168,133,74,.5);pointer-events:none}
+  .about__media img{position:relative;width:100%;height:600px;object-fit:cover}
   .about__badge{position:absolute;left:-36px;bottom:-36px;background:var(--emerald);color:var(--cream);padding:30px 34px;max-width:230px}
   .about__badge b{display:block;font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold-light);margin-bottom:6px}
   .about__badge span{font-size:10.5px;letter-spacing:.12em;line-height:1.5;text-transform:uppercase;opacity:.85}
   .about h2{font-size:clamp(38px,4.4vw,58px);line-height:1.05;margin:22px 0 26px}
   .about h2 em{font-style:italic;color:var(--emerald)}
-  .about p{font-size:16px;line-height:1.85;color:#584d3e;max-width:480px;margin:0 0 20px}
+  .about p{font-size:16px;line-height:1.85;color:var(--ink-soft);max-width:480px;margin:0 0 20px}
   @media(max-width:900px){.about{grid-template-columns:1fr;gap:90px;padding:120px 6vw}.about__media img{height:420px}.about__badge{left:0;right:auto;bottom:-28px}}
 
-  /* ---------- Glow moment ---------- */
-  .glow{position:relative;height:145vh;background:var(--emerald-deep);color:var(--cream)}
-  .glow__stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;isolation:isolate;text-align:center}
-  .glow__film,.glow__canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.28) saturate(.8) hue-rotate(-8deg) brightness(.8) contrast(1.06);transition:opacity .8s ease}
-  .glow__canvas{opacity:0}
-  .glow__canvas.is-ready{opacity:1}
-  .glow__film.is-hidden{opacity:0}
-  .glow__veil{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 640px 340px at 50% 68%,rgba(10,20,16,.72) 0%,rgba(10,20,16,.45) 60%,transparent 100%),radial-gradient(ellipse at 50% 55%,transparent 0%,rgba(17,37,29,.3) 55%,rgba(17,37,29,.88) 100%)}
-  .glow__content{position:relative;z-index:2;max-width:780px;padding:0 6vw}
-  .glow h2{font-size:clamp(34px,5.4vw,72px);line-height:1.12;font-style:italic;font-weight:400;margin:0}
-  .glow p{margin:26px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);opacity:.9}
-  @media(max-width:760px){.glow{height:130vh}}
-  @media(prefers-reduced-motion:reduce){.glow{height:100vh}}
+  /* ---------- Gallery wall (signature brand moment) ----------
+     Four columns of real studio photography drifting at different speeds
+     behind a deep veil. The parallax does the work a stock video used to —
+     but every frame is the actual studio. */
+  .wall{position:relative;height:clamp(640px,102vh,1000px);overflow:hidden;background:var(--emerald-deep);color:var(--cream);display:flex;align-items:center;justify-content:center;isolation:isolate}
+  .wall__cols{position:absolute;inset:-18% -1%;z-index:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .wall__col{display:flex;flex-direction:column;gap:14px;will-change:transform}
+  .wall__col img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:saturate(.82) contrast(1.04) brightness(.92)}
+  .wall__veil{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 820px 600px at 50% 50%,rgba(8,33,27,.93) 0%,rgba(8,33,27,.84) 42%,rgba(8,33,27,.68) 100%)}
+  .wall__content{position:relative;z-index:2;text-align:center;max-width:600px;padding:0 6vw}
+  .wall h2{font-size:clamp(34px,5.2vw,68px);line-height:1.02;letter-spacing:-.025em;margin:20px 0 0}
+  .wall h2 em{font-style:italic;color:var(--gold-light)}
+  .wall p{font-size:15px;line-height:1.8;color:rgba(245,241,232,.7);max-width:400px;margin:26px auto 0}
+  @media(max-width:900px){.wall__cols{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.wall__cols{grid-template-columns:repeat(2,1fr);inset:-24% -1%}}
 
   /* ---------- Services ---------- */
-  .services{padding:150px 5vw;max-width:1280px;margin:0 auto}
+  .services{padding:clamp(110px,14vh,168px) 6vw;max-width:1400px;margin:0 auto}
   .section-head{text-align:center;max-width:640px;margin:0 auto 80px}
   .section-head h2{font-size:clamp(38px,4.6vw,60px);line-height:1.05;margin:20px 0 0}
   .section-head h2 em{font-style:italic;color:var(--emerald)}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(43,36,25,.14);border:1px solid rgba(43,36,25,.14)}
-  .svc-card{background:var(--cream);padding:48px 36px;display:flex;flex-direction:column;gap:18px;transition:background .4s ease}
-  .svc-card:hover{background:var(--white)}
-  .svc-card .num{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:22px}
-  .svc-card h3{font-size:27px;margin:0}
-  .svc-card p{font-size:13.5px;line-height:1.7;color:#635840;margin:0;flex:1}
-  .svc-card .price{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald);display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid rgba(43,36,25,.12)}
-  .svc-card .price a{text-decoration:none;color:var(--ink);opacity:.6;transition:opacity .3s}
-  .svc-card .price a:hover{opacity:1}
-  @media(max-width:900px){.svc-grid{grid-template-columns:1fr}.services{padding:110px 6vw}}
+  /* Editorial service list — rows, not cards. Hovering a row floats the
+     matching photograph beside the cursor, so the menu doubles as portfolio. */
+  .section-head--left{text-align:left;max-width:860px;margin:0 0 clamp(48px,6vw,76px)}
+  .svc-list{border-top:1px solid rgba(26,22,18,.16)}
+  .svc-row{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(14px,3vw,54px);align-items:baseline;padding:clamp(24px,3vw,40px) 0;border-bottom:1px solid rgba(26,22,18,.16);text-decoration:none;color:inherit}
+  /* Hover shifts the left columns and wipes the rule in with transform only —
+     animating padding/width here would relayout the whole row every frame.
+     The right-hand price stays anchored, which reads as deliberate. */
+  .svc-row:before{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--emerald);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+  .svc-row__num,.svc-row__body{transition:transform .55s var(--ease)}
+  .svc-row:hover .svc-row__num,.svc-row:focus-visible .svc-row__num,
+  .svc-row:hover .svc-row__body,.svc-row:focus-visible .svc-row__body{transform:translateX(clamp(8px,1.4vw,20px))}
+  .svc-row:hover:before,.svc-row:focus-visible:before{transform:scaleX(1)}
+  .svc-row:focus-visible{outline:2px solid var(--emerald);outline-offset:6px}
+  .svc-row__num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,1.2vw,18px);color:var(--gold);min-width:2.2em}
+  .svc-row__body h3{font-size:clamp(25px,3.3vw,44px);line-height:1.04;letter-spacing:-.022em;margin:0;transition:color .45s ease}
+  .svc-row:hover .svc-row__body h3{color:var(--emerald)}
+  .svc-row__body p{font-size:13.5px;line-height:1.75;color:var(--ink-soft);max-width:52ch;margin:12px 0 0}
+  .svc-row__meta{display:flex;align-items:center;gap:clamp(12px,1.6vw,22px);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--emerald);white-space:nowrap}
+  .svc-row__meta i{font-style:normal;opacity:.55;transition:transform .5s var(--ease),opacity .4s ease}
+  .svc-row:hover .svc-row__meta i{transform:translateX(6px);opacity:1}
+  .svc-peek{position:fixed;top:0;left:0;z-index:40;width:min(23vw,290px);aspect-ratio:4/5;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .45s var(--ease),transform .6s var(--ease);box-shadow:0 44px 90px -34px rgba(8,33,27,.7)}
+  .svc-peek.is-on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .svc-peek img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:900px){.svc-row{grid-template-columns:auto minmax(0,1fr);row-gap:14px}.svc-row__meta{grid-column:2}}
+  @media(max-width:900px),(hover:none){.svc-peek{display:none}}
 
-  /* ---------- Portfolio (swirl-reveal) ---------- */
-  .portfolio{padding:150px 0 160px;background:var(--white)}
+  /* ---------- Portfolio (3D coverflow carousel) ---------- */
+  /* overflow-x:clip (not hidden) — the fanned-out slides are transformed past
+     the stage bounds and would otherwise widen the whole document on mobile,
+     and clip avoids creating a scroll container the way hidden would. */
+  .portfolio{padding:150px 0 160px;background:var(--white);overflow-x:clip}
   .portfolio .section-head{padding:0 6vw}
-  .swirl-grid{max-width:1280px;margin:0 auto;padding:0 5vw;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-  .swirl-item{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--cream-deep);opacity:0;transform:translate(var(--sx),var(--sy)) rotate(var(--sr)) scale(.4);transition:opacity 1s var(--ease),transform 1.15s var(--ease)}
-  .swirl-item.is-in{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}
-  .swirl-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .8s var(--ease)}
-  .swirl-item:hover img{transform:scale(1.06)}
-  .swirl-item .tag{position:absolute;left:12px;bottom:12px;color:#fff;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.4);opacity:0;transition:opacity .4s ease}
-  .swirl-item:hover .tag{opacity:1}
-  @media(max-width:900px){.swirl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .coverflow{max-width:1100px;margin:0 auto;padding:0 5vw}
+  .coverflow__stage{position:relative;height:460px;display:flex;align-items:center;justify-content:center;perspective:1400px}
+  .coverflow__slide{position:absolute;width:220px;aspect-ratio:3/4;border:0;padding:0;background:none;cursor:pointer;transform-style:preserve-3d;will-change:transform;transition:transform .7s cubic-bezier(.32,1.05,.4,1),opacity .6s ease}
+  .coverflow__card{position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(35,47,30,.28);background:var(--cream-deep)}
+  .coverflow__card img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .coverflow__label{display:block;margin-top:16px;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:opacity .6s ease,filter .6s ease}
+  .coverflow__controls{margin-top:26px;display:flex;align-items:center;justify-content:center;gap:22px}
+  .coverflow__arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(43,36,25,.25);background:transparent;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:border-color .3s ease,background .3s ease}
+  .coverflow__arrow:hover{border-color:var(--ink);background:rgba(43,36,25,.06)}
+  .coverflow__arrow:disabled{opacity:.3;cursor:default}
+  .coverflow__dots{display:flex;gap:8px}
+  .coverflow__dot{width:8px;height:8px;border-radius:50%;background:rgba(43,36,25,.25);border:0;padding:0;cursor:pointer;transition:transform .3s ease,border-radius .3s ease,background .3s ease}
+  .coverflow__dot.is-active{transform:scaleX(3.25);border-radius:5px;background:var(--emerald)}
+  @media(max-width:760px){.coverflow__stage{height:320px}.coverflow__slide{width:150px}}
 
   /* ---------- Studio rail ---------- */
   .rail-section{background:var(--emerald-deep);padding:120px 0;color:var(--cream)}
   .rail-section .section-head{padding:0 6vw}
   .rail-section .section-head h2{color:var(--cream)}
   .rail-section .section-head h2 em{color:var(--gold-light)}
-  .rail-viewport{overflow:hidden;padding:0 0 12px}
+  /* Edge fades so the crawl dissolves at the frame instead of hard-cropping */
+  .rail-viewport{overflow:hidden;padding:0 0 12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
   .rail{display:flex;gap:18px;width:max-content;padding:0 5vw;cursor:grab;touch-action:pan-y}
   .rail.is-dragging{cursor:grabbing}
   .rail img{flex:0 0 340px;height:440px;object-fit:cover;pointer-events:none;user-select:none}
   @media(max-width:760px){.rail img{flex-basis:240px;height:320px}}
 
   /* ---------- Reviews ---------- */
-  .reviews{padding:150px 5vw;max-width:1100px;margin:0 auto;text-align:center}
+  .reviews{padding:150px 5vw;max-width:1180px;margin:0 auto;text-align:center}
   .reviews .stars{color:var(--gold);font-size:20px;letter-spacing:.2em;margin-bottom:22px}
-  .reviews h2{font-size:clamp(30px,3.6vw,44px);line-height:1.2;font-style:italic;font-weight:400;max-width:16ch;margin:0 auto}
-  .review-grid{margin-top:80px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:50px;text-align:left}
-  .review-card p{font-size:15px;line-height:1.8;color:#4a4030;margin:0 0 20px}
-  .review-card .who{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald);display:flex;justify-content:space-between}
-  .review-card .who span:last-child{color:var(--gold)}
-  @media(max-width:900px){.review-grid{grid-template-columns:1fr;gap:44px}.reviews{padding:110px 6vw}}
+  .reviews h2{font-size:clamp(30px,3.6vw,44px);line-height:1.2;font-weight:400;max-width:20ch;margin:20px auto 0}
+  .reviews h2 em{font-style:italic;color:var(--emerald)}
+  /* Testimonials read as pull-quotes, not boxes: hairline rule instead of a
+     card, quote set in the display serif so it carries real weight. */
+  .review-grid{margin-top:clamp(56px,7vw,84px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,4vw,56px);text-align:left}
+  .review-card{position:relative;padding:34px 0 0;border-top:1px solid rgba(26,22,18,.18)}
+  .review-card__quote{position:absolute;top:14px;right:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:64px;line-height:1;color:var(--gold);opacity:.22;pointer-events:none}
+  .review-card__stars{position:relative;color:var(--gold);font-size:10.5px;letter-spacing:.18em;margin-bottom:22px}
+  .review-card p{position:relative;font-family:'Cormorant Garamond',serif;font-size:clamp(19px,1.6vw,23px);line-height:1.5;letter-spacing:-.005em;color:var(--ink);margin:0 0 30px}
+  .review-card .who{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid rgba(43,36,25,.1)}
+  .review-card .avatar{flex:0 0 auto;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--emerald);background:var(--cream-deep)}
+  .review-card .who__text{display:flex;flex-direction:column;gap:4px}
+  .review-card .who__text b{font-family:'Jost',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.03em;color:var(--ink)}
+  .review-card .who__text span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+  @media(min-width:901px){
+    .review-grid > :nth-child(2){transform:translateY(34px)}
+    .review-grid > :nth-child(3){transform:translateY(10px)}
+  }
+  @media(max-width:900px){.review-grid{grid-template-columns:1fr;gap:32px}.reviews{padding:110px 6vw}}
 
   /* ---------- Booking / footer ---------- */
+  /* ---------- Muse (brand artwork + founder quote) ----------
+     The generated artwork works as a contained, framed panel — at full-bleed
+     hero scale the face dominated and its artefacts showed. Held to a portrait
+     panel beside the quote, it reads as an art print on the studio wall. */
+  .muse{background:var(--emerald-deep);color:var(--cream);padding:clamp(100px,13vh,152px) 6vw}
+  .muse__inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:clamp(38px,6vw,88px);align-items:center}
+  .muse__art{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:#000}
+  .muse__art:after{content:"";position:absolute;inset:0;border:1px solid rgba(228,203,153,.26);pointer-events:none}
+  .muse__art video{width:100%;height:100%;object-fit:cover;display:block}
+  .muse__quote{margin:0}
+  .muse__quote p{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.7vw,50px);line-height:1.16;letter-spacing:-.022em;margin:26px 0 30px}
+  .muse__quote cite{font-style:normal;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,241,232,.58)}
+  @media(max-width:860px){.muse__inner{grid-template-columns:1fr;gap:38px}.muse__art{aspect-ratio:3/2}}
+
+  /* ---------- Booking ---------- */
   .booking{position:relative;background:var(--emerald);color:var(--cream);padding:150px 5vw 100px;overflow:hidden}
-  .booking__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:70px}
+  /* The bloom clip is black-background, so screen-blending turns its petals
+     into light over the emerald instead of sitting there as a video box. */
+  .booking__bloom{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.32;mix-blend-mode:screen}
+  .booking__bloom video{width:100%;height:100%;object-fit:cover;display:block}
+  /* Scrim above the bloom, below the copy — the petals brighten the ground
+     enough to drop cream text under AA without it. */
+  .booking__scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(18,80,62,.72) 0%,rgba(18,80,62,.44) 55%,rgba(18,80,62,.30) 100%)}
+  .booking__inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:70px}
   .booking h2{font-size:clamp(38px,4.8vw,60px);line-height:1.05;margin:0 0 26px}
   .booking h2 em{font-style:italic;color:var(--gold-light)}
-  .booking p{font-size:15px;line-height:1.8;color:rgba(250,245,236,.78);max-width:420px;margin:0 0 34px}
+  /* .88 not .78 — at .78 this drops to 4.34:1 against the brightest petal */
+  .booking p{font-size:15px;line-height:1.8;color:rgba(250,245,236,.88);max-width:420px;margin:0 0 34px}
   .hours{border-top:1px solid rgba(250,245,236,.18)}
   .hours .row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(250,245,236,.18);font-size:13px;letter-spacing:.06em}
+  .hours .row span:last-child{font-variant-numeric:tabular-nums}
   .hours .row span:first-child{text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;opacity:.7}
   .booking__addr{margin-top:34px;font-size:13.5px;line-height:1.8;color:rgba(250,245,236,.85)}
   .booking__addr b{display:block;color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:6px}
@@ -166,49 +349,59 @@
 </head>
 <body>
 
+<div class="intro" id="intro" role="presentation">
+  <div class="intro__film" id="introFilm" aria-hidden="true">
+    <!-- trimmed to the clip's first 3.6s: past that the figure's eyes open and
+         the frontal stare turns uncanny, which is the wrong first impression -->
+    <video id="introVideo" poster="assets/video/muse-intro.jpg" muted loop playsinline preload="auto">
+      <source src="assets/video/muse-intro-loop.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="intro__veil" aria-hidden="true"></div>
+  <div class="intro__mark">
+    <img class="intro__logo" src="assets/brand/logo.png" alt="" width="436" height="384" fetchpriority="high">
+    <div class="intro__rule" aria-hidden="true"></div>
+    <div class="intro__tag">Maroochydore &middot; Queensland</div>
+  </div>
+  <div class="intro__skip">Tap to enter</div>
+</div>
+
 <nav id="nav">
-  <a href="#" class="wordmark">FABEAUTY</a>
+  <!-- compact lockup: the full logo's "Private Beauty Studio" line is unreadable
+       at nav scale, so the nav uses the mark + script only -->
+  <a href="#" class="wordmark" aria-label="Fabeauty Private Beauty Studio — home">
+    <img src="assets/brand/logo-mark.png" alt="Fabeauty Private Beauty Studio" width="436" height="322">
+  </a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#reviews">Reviews</a>
-    <a class="btn btn-outline nav-book" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Now</a>
+    <a class="btn nav-book" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Now</a>
   </div>
 </nav>
 
-<section class="glow" id="glow">
-  <div class="glow__stage">
-    <video class="glow__film" id="glowFilm" muted playsinline preload="auto" aria-hidden="true">
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_230900_ef8565a6-16eb-4fe9-98e4-4b972d3f436d.mp4" type="video/mp4">
-    </video>
-    <canvas class="glow__canvas" id="glowCanvas" aria-hidden="true"></canvas>
-    <div class="glow__veil"></div>
-    <div class="glow__content">
-      <h2 data-reveal>&ldquo;Every detail is focused on enhancing your natural beauty.&rdquo;</h2>
-      <p data-reveal class="d1">Fabiana &middot; Fabeauty Private Studio</p>
+<section class="hero" data-nav-bg="dark">
+  <div class="hero__grid">
+    <div class="hero__copy">
+      <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;184 reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
+      <h1 data-reveal class="d1"><span class="line"><span>Natural beauty,</span></span><span class="line"><span><em>quietly considered.</em></span></span></h1>
+      <p data-reveal class="d2">A private studio in Maroochydore where every detail — from the first hello to the final polish — is focused on making you feel confident, relaxed and renewed.</p>
+      <div class="hero__ctas d3" data-reveal>
+        <a class="btn btn-solid" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
+        <a class="btn btn-cream" href="#services">View Services</a>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="hero">
-  <img class="hero__img" src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=1920&f_quality=75" alt="Fabeauty Private Studio treatment room">
-  <div class="hero__veil"></div>
-  <div class="hero__content">
-    <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;184 reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
-    <h1 data-reveal class="d1">Natural beauty,<br><em>quietly considered.</em></h1>
-    <p data-reveal class="d2">A private studio in Maroochydore where every detail — from the first hello to the final polish — is focused on making you feel confident, relaxed and renewed.</p>
-    <div class="hero__ctas" data-reveal class="d3">
-      <a class="btn btn-solid" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
-      <a class="btn btn-cream" href="#services">View Services</a>
+    <div class="hero__media d2" data-reveal>
+      <img src="assets/gallery/final/studio-hero-room.jpg" alt="Serene treatment room at Fabeauty Private Studio, with backlit mirror and plants">
     </div>
   </div>
   <div class="hero__scroll"><span>Scroll</span><i></i></div>
 </section>
 
-<section class="about" id="about">
+<section class="about" id="about" data-nav-bg="light">
   <div class="about__media" data-reveal>
-    <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=1920&f_quality=75" alt="Inside Fabeauty Private Studio">
+    <img src="assets/gallery/final/studio-about-nails.jpg" alt="Nail art station at Fabeauty Private Studio, with LED lamps and marble armrest">
     <div class="about__badge"><b>5.0</b><span>Rated by 184 clients across the Sunshine Coast</span></div>
   </div>
   <div>
@@ -219,124 +412,226 @@
   </div>
 </section>
 
-<section class="services" id="services">
-  <div class="section-head">
-    <div class="eyebrow" style="justify-content:center" data-reveal>Signature Services</div>
+<section class="services" id="services" data-nav-bg="light">
+  <div class="section-head section-head--left">
+    <div class="eyebrow" data-reveal>Signature Services</div>
     <h2 data-reveal class="d1">Considered care,<br><em>from head to hand.</em></h2>
   </div>
-  <div class="svc-grid">
-    <article class="svc-card" data-reveal>
-      <span class="num">01</span>
-      <h3>Builder Gel / BIAB</h3>
-      <p>Strengthening treatment on natural nails — a resilient, glass-like finish that lasts.</p>
-      <div class="price"><span>From AU$75 · 1h&ndash;1h45</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
-    <article class="svc-card" data-reveal class="d1">
-      <span class="num">02</span>
-      <h3>Manicure &amp; Pedicure</h3>
-      <p>Classic, unhurried hand and foot care finished with premium natural polish.</p>
-      <div class="price"><span>From AU$60</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
-    <article class="svc-card" data-reveal class="d2">
-      <span class="num">03</span>
-      <h3>Brows &amp; Lashes</h3>
-      <p>Wax &amp; shape, Korean lash lift and lash extensions — framing your natural expression.</p>
-      <div class="price"><span>From AU$30</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
-    <article class="svc-card" data-reveal class="d3">
-      <span class="num">04</span>
-      <h3>Facial Rituals</h3>
-      <p>Skin-first facials and facial waxing, tailored to renew and restore your complexion.</p>
-      <div class="price"><span>Enquire for pricing</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
-    <article class="svc-card" data-reveal class="d4">
-      <span class="num">05</span>
-      <h3>Therapeutic Massage</h3>
-      <p>Tension-relief massage in a calming, private setting — space to fully switch off.</p>
-      <div class="price"><span>Enquire for pricing</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
-    <article class="svc-card" data-reveal>
-      <span class="num">06</span>
-      <h3>Brazilian Sculpt Method</h3>
-      <p>A signature body treatment, designed to sculpt, tone and leave skin renewed.</p>
-      <div class="price"><span>Enquire for pricing</span><a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book →</a></div>
-    </article>
+  <div class="svc-list" id="svcList">
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-13.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">01</span>
+      <div class="svc-row__body">
+        <h3>Builder Gel / BIAB</h3>
+        <p>Strengthening treatment on natural nails — a resilient, glass-like finish that lasts.</p>
+      </div>
+      <span class="svc-row__meta">From AU$75 · 1h&ndash;1h45 <i>&#8594;</i></span>
+    </a>
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-19.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">02</span>
+      <div class="svc-row__body">
+        <h3>Manicure &amp; Pedicure</h3>
+        <p>Classic, unhurried hand and foot care finished with premium natural polish.</p>
+      </div>
+      <span class="svc-row__meta">From AU$60 <i>&#8594;</i></span>
+    </a>
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-16.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">03</span>
+      <div class="svc-row__body">
+        <h3>Brows &amp; Lashes</h3>
+        <p>Wax &amp; shape, Korean lash lift and lash extensions — framing your natural expression.</p>
+      </div>
+      <span class="svc-row__meta">From AU$30 <i>&#8594;</i></span>
+    </a>
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-12.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">04</span>
+      <div class="svc-row__body">
+        <h3>Facial Rituals</h3>
+        <p>Skin-first facials and facial waxing, tailored to renew and restore your complexion.</p>
+      </div>
+      <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+    </a>
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-36.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">05</span>
+      <div class="svc-row__body">
+        <h3>Therapeutic Massage</h3>
+        <p>Tension-relief massage in a calming, private setting — space to fully switch off.</p>
+      </div>
+      <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+    </a>
+    <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-01.jpg" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
+      <span class="svc-row__num">06</span>
+      <div class="svc-row__body">
+        <h3>Brazilian Sculpt Method</h3>
+        <p>A signature body treatment, designed to sculpt, tone and leave skin renewed.</p>
+      </div>
+      <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+    </a>
+  </div>
+  <!-- Seeded with row 01's photo so it ships a real image and the first hover
+       needs no swap; lazy so touch/mobile (where .svc-peek is display:none)
+       never fetches it. Later hovers swap the src. -->
+  <div class="svc-peek" id="svcPeek" aria-hidden="true">
+    <img src="assets/gallery/final/studio-13.jpg" alt="" loading="lazy" decoding="async">
   </div>
 </section>
 
-<section class="portfolio" id="portfolio">
+<section class="muse" data-nav-bg="dark">
+  <div class="muse__inner">
+    <figure class="muse__art" data-reveal>
+      <video data-ambient poster="assets/video/muse-bloom.jpg" muted loop playsinline preload="none" aria-hidden="true">
+        <source src="assets/video/muse-bloom.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <blockquote class="muse__quote d1" data-reveal>
+      <div class="eyebrow">In the studio</div>
+      <p>&ldquo;Every detail is focused on enhancing your natural beauty.&rdquo;</p>
+      <cite>Fabiana &middot; Fabeauty Private Studio</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio" data-nav-bg="light">
   <div class="section-head">
     <div class="eyebrow" style="justify-content:center" data-reveal>Portfolio</div>
     <h2 data-reveal class="d1">Natural, glossy,<br><em>unmistakably Fabeauty.</em></h2>
   </div>
-  <div class="swirl-grid" id="swirlGrid">
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/ab4eca6f-cef7-48ce-a59b-bf2a07185554.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=wGtbnfyn7zGxbSjgHhlpvHoNshQ&f_width=1000&f_quality=80" alt="Natural nail work by Fabeauty"><span class="tag">Builder Gel</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/79bee946-aae5-4472-b086-f247512ff409.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=ri2HhUXBdMGeSwn6RrQC3xkDdPU&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">Manicure</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/80d896b8-06de-49cb-bdd5-3f4af09d24f2.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=d3SQAgpWgGOcYfLVkkO2IO6Qz8A&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">BIAB</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/9b9ca2c2-095b-4832-a60a-88ef4e9aa579.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=wvOOADLy/2EO+UNnfD7TKxUPJVY&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">Nails</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/b2b38e66-2027-4f82-bc3c-6d9200685fcb.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=qPaI/y+7JiGUgcCQMcAogqwCL2I&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">Manicure</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/37034fd3-90ce-4c2a-81b3-514e9fe9bd6f.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=x9rtXVEJ9Q9JQvMwim1YoaRfgmQ&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">Nails</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/partner-portfolios/providers/1205870/16044092-991d-454b-961c-f4db03797ede.jpeg?class=square512&dpr=1&keyId=rl8WOyy9WOMLne9A&signature=fl993zOiErLV8QwuA1ThK9TrqnI&f_width=1000&f_quality=80" alt="Nail portfolio by Fabeauty"><span class="tag">BIAB</span></div>
-    <div class="swirl-item"><img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=1000&f_quality=80" alt="Fabeauty manicure station"><span class="tag">The Studio</span></div>
+  <div class="coverflow" data-reveal>
+    <div class="coverflow__stage" id="cfStage">
+      <button class="coverflow__slide" data-index="0"><div class="coverflow__card"><img src="assets/gallery/final/studio-04.jpg" alt="Volume lash extensions by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Volume Lash</span></button>
+      <button class="coverflow__slide" data-index="1"><div class="coverflow__card"><img src="assets/gallery/final/studio-13.jpg" alt="Builder gel manicure by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Builder Gel</span></button>
+      <button class="coverflow__slide" data-index="2"><div class="coverflow__card"><img src="assets/gallery/final/studio-16.jpg" alt="Brow lamination before and after by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Brow Lamination</span></button>
+      <button class="coverflow__slide" data-index="3"><div class="coverflow__card"><img src="assets/gallery/final/studio-09.jpg" alt="Hybrid lash extensions by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Hybrid Lash</span></button>
+      <button class="coverflow__slide" data-index="4"><div class="coverflow__card"><img src="assets/gallery/final/studio-19.jpg" alt="French ombre manicure by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">French Manicure</span></button>
+      <button class="coverflow__slide" data-index="5"><div class="coverflow__card"><img src="assets/gallery/final/studio-18.jpg" alt="Classic lash extensions by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Classic Lash</span></button>
+      <button class="coverflow__slide" data-index="6"><div class="coverflow__card"><img src="assets/gallery/final/studio-06.jpg" alt="Lash extension detail by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Lash Extension</span></button>
+      <button class="coverflow__slide" data-index="7"><div class="coverflow__card"><img src="assets/gallery/final/studio-15.jpg" alt="Hybrid lash extension close-up by Fabeauty" loading="lazy" decoding="async"></div><span class="coverflow__label">Lash Detail</span></button>
+    </div>
+    <div class="coverflow__controls">
+      <button class="coverflow__arrow" id="cfPrev" aria-label="Previous photo">&#8592;</button>
+      <div class="coverflow__dots" id="cfDots"></div>
+      <button class="coverflow__arrow" id="cfNext" aria-label="Next photo">&#8594;</button>
+    </div>
   </div>
 </section>
 
-<section class="rail-section">
+<section class="rail-section" data-nav-bg="dark">
   <div class="section-head">
     <div class="eyebrow" style="justify-content:center" data-reveal>Inside Fabeauty</div>
     <h2 data-reveal class="d1">A private studio,<br><em>designed to slow down in.</em></h2>
   </div>
   <div class="rail-viewport">
     <div class="rail" id="rail">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773198/f35a1e2f-aa94-4624-b5ce-ae2886e78903-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773199/baa8836e-e9b3-407b-b887-32dc441ed4cd-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773200/a9c87963-985f-41c1-b51f-adcb126172d5-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773201/966ee801-f30e-470c-944c-e5044b2d992f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773202/fbe5ac9c-bbef-4623-b7c0-9911379cffda-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773203/d19e274f-f750-4ba8-a5ba-48af5bb00795-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773195/51df3d78-9525-4096-81bb-d271c8cb151e-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773196/a14b9c99-f3dd-4987-b460-1c32142b8fb9-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773197/76fd7b3a-fc44-4253-b417-f7ca1952144f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773198/f35a1e2f-aa94-4624-b5ce-ae2886e78903-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773199/baa8836e-e9b3-407b-b887-32dc441ed4cd-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773200/a9c87963-985f-41c1-b51f-adcb126172d5-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773201/966ee801-f30e-470c-944c-e5044b2d992f-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773202/fbe5ac9c-bbef-4623-b7c0-9911379cffda-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
-      <img src="https://images.fresha.com/locations/location-profile-images/1205870/5773203/d19e274f-f750-4ba8-a5ba-48af5bb00795-Fabeauty-PrivateHome-BasedBeautyStudio-AU-Queensland-Maroochydore-Fresha.jpg?class=venue-gallery-mobile&f_width=900&f_quality=80" alt="Fabeauty Private Studio" draggable="false">
+      <img src="assets/gallery/final/studio-22.jpg" alt="Treatment room and nail station at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-02.jpg" alt="Brow and lash detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-21.jpg" alt="Nail art station at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-03.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-05.jpg" alt="Brow shaping detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-12.jpg" alt="Facial ritual with jade gua sha stones at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-07.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-08.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-10.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-11.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-14.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-17.jpg" alt="Brow and lash detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-22.jpg" alt="Treatment room and nail station at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-02.jpg" alt="Brow and lash detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-21.jpg" alt="Nail art station at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-03.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-05.jpg" alt="Brow shaping detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-12.jpg" alt="Facial ritual with jade gua sha stones at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-07.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-08.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-10.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-11.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-14.jpg" alt="Lash extension detail at Fabeauty Private Studio" draggable="false" decoding="async">
+      <img src="assets/gallery/final/studio-17.jpg" alt="Brow and lash detail at Fabeauty Private Studio" draggable="false" decoding="async">
     </div>
   </div>
 </section>
 
-<section class="reviews" id="reviews">
+<section class="reviews" id="reviews" data-nav-bg="light">
   <div class="stars" data-reveal>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-  <h2 data-reveal class="d1">Highly recommended by clients across the Sunshine Coast.</h2>
+  <h2 data-reveal class="d1">Highly recommended<br><em>by clients across the Sunshine Coast.</em></h2>
   <div class="review-grid">
     <div class="review-card" data-reveal>
-      <p>&ldquo;Maravilhosa! Amei minha unha. Como sempre o capricho nota mil.&rdquo;</p>
-      <div class="who"><span>Priscila S.</span><span>Builder Gel / BIAB</span></div>
+      <span class="review-card__quote" aria-hidden="true">&ldquo;</span>
+      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p lang="pt-BR">&ldquo;Maravilhosa! Amei minha unha. Como sempre o capricho nota mil.&rdquo;</p>
+      <div class="who">
+        <div class="avatar">P</div>
+        <div class="who__text"><b>Priscila S.</b><span>Builder Gel / BIAB</span></div>
+      </div>
     </div>
-    <div class="review-card" data-reveal class="d1">
+    <div class="review-card d1" data-reveal>
+      <span class="review-card__quote" aria-hidden="true">&ldquo;</span>
+      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       <p>&ldquo;A beautiful relaxing atmosphere and Fabiana was excellent.&rdquo;</p>
-      <div class="who"><span>Robyn B.</span><span>Tension Relief</span></div>
+      <div class="who">
+        <div class="avatar">R</div>
+        <div class="who__text"><b>Robyn B.</b><span>Tension Relief</span></div>
+      </div>
     </div>
-    <div class="review-card" data-reveal class="d2">
+    <div class="review-card d2" data-reveal>
+      <span class="review-card__quote" aria-hidden="true">&ldquo;</span>
+      <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       <p>&ldquo;Fabe's very warm welcome from the moment you arrive is so lovely. She's friendly and professional, in a very clean and calming environment.&rdquo;</p>
-      <div class="who"><span>Debbie P.</span><span>Builder Gel / BIAB</span></div>
+      <div class="who">
+        <div class="avatar">D</div>
+        <div class="who__text"><b>Debbie P.</b><span>Builder Gel / BIAB</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="booking" id="booking">
+<section class="wall" id="wall" data-nav-bg="dark">
+  <div class="wall__cols" aria-hidden="true">
+    <div class="wall__col" data-speed="-14">
+      <img src="assets/gallery/final/studio-27.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-08.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-41.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-12.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="wall__col" data-speed="19">
+      <img src="assets/gallery/final/studio-21.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-25.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-10.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-36.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="wall__col" data-speed="-9">
+      <img src="assets/gallery/final/studio-23.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-14.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-31.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-03.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="wall__col" data-speed="16">
+      <img src="assets/gallery/final/studio-20.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-17.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-38.jpg" alt="" loading="lazy" decoding="async">
+      <img src="assets/gallery/final/studio-05.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="wall__veil"></div>
+  <div class="wall__content">
+    <div class="eyebrow" style="justify-content:center" data-reveal>The Ritual</div>
+    <h2 data-reveal class="d1">Beauty, <em>quietly in bloom.</em></h2>
+    <p data-reveal class="d2">One client at a time. No rush, no queue &mdash; just the studio, entirely yours.</p>
+  </div>
+</section>
+
+<section class="booking" id="booking" data-nav-bg="dark">
+  <div class="booking__bloom" aria-hidden="true">
+    <video data-ambient poster="assets/video/flower-bloom.jpg" muted loop playsinline preload="none">
+      <source src="assets/video/flower-bloom.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="booking__scrim" aria-hidden="true"></div>
   <div class="booking__inner">
     <div>
       <div class="eyebrow" data-reveal>Reserve Your Visit</div>
       <h2 data-reveal class="d1">Your natural beauty,<br><em>booked in minutes.</em></h2>
       <p data-reveal class="d2">Instant confirmation, pay through the app, and a studio that's entirely yours for the appointment. Book directly through Fresha.</p>
-      <a class="btn btn-cream" data-reveal class="d3" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
-      <div class="booking__addr" data-reveal class="d4">
+      <a class="btn btn-cream d3" data-reveal href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
+      <div class="booking__addr d4" data-reveal>
         <b>Fabeauty Private Studio</b>
         64 Anzac Avenue, Unit 2<br>
         Maroochydore, Queensland, Australia
@@ -357,160 +652,283 @@
   </div>
 </section>
 
-<footer>
+<footer data-nav-bg="dark">
   <span>&copy; Fabeauty Private Studio &middot; Maroochydore, QLD</span>
   <a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha ↗</a>
 </footer>
 
 <script>
+  // ---- Brand intro: holds ~4s, then lifts. Skippable by click/key/scroll, and
+  // guarded so a missed transitionend or a thrown error above can never leave the
+  // overlay covering the page.
+  (function brandIntro() {
+    const intro = document.getElementById('intro');
+    if (!intro) return;
+
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const HOLD = reduceMotion ? 900 : 6000;
+    let done = false;
+
+    document.body.style.overflow = 'hidden';
+
+    // Progressive enhancement: emerald + poster carry the frame from the first
+    // paint; the film is only revealed once it can actually play, so a slow
+    // connection gets the plain intro instead of a stall.
+    const film = document.getElementById('introFilm');
+    const video = document.getElementById('introVideo');
+    if (film && video && !reduceMotion) {
+      const reveal = () => film.classList.add('is-ready');
+      if (video.readyState >= 3) reveal();
+      else video.addEventListener('canplay', reveal, { once: true });
+      video.play().catch(() => {});   // refusal is fine — poster stays put
+    }
+
+    function dismiss() {
+      if (done) return;
+      done = true;
+      document.body.style.overflow = '';
+      intro.classList.add('is-out');
+      // the hero entrance waits for this — otherwise it plays behind the
+      // opaque overlay and the curtain lifts on an already-finished scene
+      document.dispatchEvent(new CustomEvent('intro:done'));
+      // remove from the a11y tree and paint path once it has faded
+      setTimeout(() => { intro.hidden = true; }, 1100);
+      removeEventListener('keydown', onKey);
+      removeEventListener('wheel', dismiss);
+      removeEventListener('touchmove', dismiss);
+    }
+    function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') dismiss(); }
+
+    intro.addEventListener('click', dismiss);
+    addEventListener('keydown', onKey);
+    addEventListener('wheel', dismiss, { passive: true });
+    addEventListener('touchmove', dismiss, { passive: true });
+
+    setTimeout(dismiss, HOLD);
+    // hard backstop: whatever happens, the page is never locked past this
+    setTimeout(() => { document.body.style.overflow = ''; }, HOLD + 3000);
+  })();
+
   // ---- Nav scroll state ----
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
+  // ---- Nav contrast: swap wordmark/links between cream and ink depending on
+  // whether the section currently sitting behind the nav is dark or light ----
+  (function navContrast() {
+    const zones = document.querySelectorAll('[data-nav-bg]');
+    if (!zones.length) return;
+    let io;
+    function build() {
+      if (io) io.disconnect();
+      const navH = nav.offsetHeight;
+      const bandBottom = Math.max(innerHeight - navH - 1, navH + 1);
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) nav.classList.toggle('on-light', e.target.dataset.navBg === 'light');
+        });
+      }, { rootMargin: `-${navH}px 0px -${bandBottom}px 0px`, threshold: 0 });
+      zones.forEach((z) => io.observe(z));
+    }
+    build();
+    let resizeTimer;
+    addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 200);
+    });
+  })();
+
   // ---- Scroll reveals ----
+  // Hero elements are held back while the intro overlay is up: their entrance
+  // is deferred to intro:done so it plays as the curtain lifts, not behind it.
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealEls = document.querySelectorAll('[data-reveal]');
+  const introUp = () => { const i = document.getElementById('intro'); return i && !i.hidden && !i.classList.contains('is-out'); };
+  const heroHeld = new Set((!reduced && introUp()) ? document.querySelectorAll('.hero [data-reveal]') : []);
+  if (heroHeld.size) {
+    document.addEventListener('intro:done', () => {
+      // 350ms in, the curtain is half-lifted — the stagger classes do the rest
+      setTimeout(() => heroHeld.forEach(el => el.classList.add('is-in')), 350);
+    }, { once: true });
+  }
   if (reduced) {
-    revealEls.forEach(el => el.classList.add('is-in'));
+    revealEls.forEach(el => { if (!heroHeld.has(el)) el.classList.add('is-in'); });
   } else {
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      entries.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); if (!heroHeld.has(e.target)) e.target.classList.add('is-in'); } });
     }, { threshold: 0.15 });
     revealEls.forEach(el => io.observe(el));
   }
 
-  // ---- Portfolio swirl-in: each tile starts flung out on a spiral, settles into the grid ----
-  const swirlItems = document.querySelectorAll('.swirl-item');
-  swirlItems.forEach((el, i) => {
-    const angle = (i / swirlItems.length) * Math.PI * 2 * 2.4;
-    const radius = 260 + (i % 3) * 60;
-    el.style.setProperty('--sx', Math.cos(angle) * radius + 'px');
-    el.style.setProperty('--sy', Math.sin(angle) * radius + 'px');
-    el.style.setProperty('--sr', (angle * 40) % 60 - 30 + 'deg');
-    el.style.transitionDelay = reduced ? '0s' : (i * 0.09) + 's';
-  });
-  if (reduced) {
-    swirlItems.forEach(el => el.classList.add('is-in'));
-  } else {
-    const swirlIo = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.parentElement.querySelectorAll('.swirl-item').forEach(item => item.classList.add('is-in'));
-          swirlIo.disconnect();
+  // ---- Portfolio coverflow: 3D fan carousel, click a slide/dot/arrow to focus it ----
+  (function coverflow() {
+    const stage = document.getElementById('cfStage');
+    if (!stage) return;
+    const slides = Array.from(stage.querySelectorAll('.coverflow__slide'));
+    const dotsWrap = document.getElementById('cfDots');
+    const prevBtn = document.getElementById('cfPrev');
+    const nextBtn = document.getElementById('cfNext');
+    let active = Math.floor(slides.length / 2);
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'coverflow__dot';
+      dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function render() {
+      slides.forEach((slide, i) => {
+        const diff = i - active;
+        const abs = Math.abs(diff);
+        const label = slide.querySelector('.coverflow__label');
+        slide.style.zIndex = String(100 - abs);
+        slide.style.opacity = abs > 3 ? '0' : '1';
+        slide.style.pointerEvents = abs > 3 ? 'none' : 'auto';
+        const scale = diff === 0 ? 1 : 0.8;
+        slide.style.transform = `translateX(${diff * 132}px) translateZ(${-abs * 60}px) rotateY(${diff * -32}deg) scale(${scale})`;
+        if (label) {
+          label.style.opacity = diff === 0 ? '1' : '0';
+          label.style.filter = diff === 0 ? 'blur(0)' : 'blur(3px)';
         }
       });
-    }, { threshold: 0.2 });
-    swirlIo.observe(document.getElementById('swirlGrid'));
-  }
-
-  // ---- Glow: scroll-scrubbed brand moment, warm-graded to match the studio palette ----
-  (function glowVideo() {
-    const GLOW_VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_230900_ef8565a6-16eb-4fe9-98e4-4b972d3f436d.mp4';
-    const section = document.getElementById('glow');
-    const film = document.getElementById('glowFilm');
-    const canvas = document.getElementById('glowCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let frames = [], framesReady = false;
-    let target = 0, smoothed = 0, raf = 0, visible = false, lastSeek = -1;
-
-    function sizeCanvas() {
-      const d = Math.min(devicePixelRatio || 1, 2);
-      canvas.width = Math.round(innerWidth * d);
-      canvas.height = Math.round(innerHeight * d);
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === active));
+      prevBtn.disabled = active === 0;
+      nextBtn.disabled = active === slides.length - 1;
     }
 
-    function drawCover(source, sw, sh) {
-      const scale = Math.max(canvas.width / sw, canvas.height / sh);
-      const dw = sw * scale, dh = sh * scale;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(source, (canvas.width - dw) / 2, (canvas.height - dh) / 2, dw, dh);
+    function goTo(i) {
+      active = Math.min(slides.length - 1, Math.max(0, i));
+      render();
     }
 
-    function tick() {
-      raf = 0;
-      smoothed += (target - smoothed) * (reduced ? 1 : 0.22);
-      if (framesReady && frames.length) {
-        const idx = Math.min(frames.length - 1, Math.max(0, Math.round(smoothed * (frames.length - 1))));
-        const frame = frames[idx];
-        if (frame) drawCover(frame, frame.width, frame.height);
-      } else if (film.duration) {
-        const desired = smoothed * Math.max(film.duration - 0.05, 0);
-        if (Math.abs(desired - lastSeek) > 0.04) { lastSeek = desired; film.currentTime = desired; }
+    slides.forEach((slide, i) => slide.addEventListener('click', () => goTo(i)));
+    prevBtn.addEventListener('click', () => goTo(active - 1));
+    nextBtn.addEventListener('click', () => goTo(active + 1));
+
+    render();
+  })();
+
+  // ---- Ambient artwork clips: nothing downloads until the section is near the
+  // viewport, and playback pauses once it leaves. Under reduced motion they stay
+  // as their poster frame and never load at all.
+  (function ambientVideo() {
+    const films = Array.from(document.querySelectorAll('video[data-ambient]'));
+    if (!films.length || reduced) return;
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const v = e.target;
+        if (e.isIntersecting) {
+          if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+          v.play().catch(() => {});   // autoplay refusal is fine — poster remains
+        } else {
+          v.pause();
+        }
       }
-      if (visible && Math.abs(target - smoothed) > 0.0005) raf = requestAnimationFrame(tick);
+    }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+    films.forEach(v => io.observe(v));
+  })();
+
+  // ---- Service rows: float the matching photo beside the cursor, easing toward
+  // the pointer rather than snapping to it. Pointer-only; keyboard users get the
+  // focus ring and underline instead.
+  (function servicePeek() {
+    const list = document.getElementById('svcList');
+    const peek = document.getElementById('svcPeek');
+    if (!list || !peek || reduced || matchMedia('(hover:none)').matches) return;
+    const img = peek.querySelector('img');
+    const rows = Array.from(list.querySelectorAll('.svc-row'));
+
+    // warm the cache so the first hover doesn't flash an empty frame
+    for (const row of rows) { const p = new Image(); p.src = row.dataset.peek; }
+
+    let targetX = 0, targetY = 0, curX = 0, curY = 0, rot = 0, raf = 0, active = false;
+
+    function loop() {
+      curX += (targetX - curX) * 0.13;
+      curY += (targetY - curY) * 0.13;
+      // lag-based tilt: the photo leans into the direction of travel and
+      // settles upright when the cursor rests — like a print being carried
+      rot += (Math.max(-5, Math.min(5, (targetX - curX) * 0.055)) - rot) * 0.12;
+      peek.style.translate = `${curX.toFixed(1)}px ${curY.toFixed(1)}px`;
+      peek.style.rotate = `${rot.toFixed(2)}deg`;
+      raf = active ? requestAnimationFrame(loop) : 0;
     }
 
-    function onScroll() {
-      const range = section.offsetHeight - innerHeight;
-      target = range > 0 ? Math.min(1, Math.max(0, -section.getBoundingClientRect().top / range)) : 0;
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
+    list.addEventListener('pointermove', (e) => {
+      targetX = e.clientX; targetY = e.clientY;
+      if (!active) { active = true; curX = targetX; curY = targetY; loop(); }
+    });
 
-    sizeCanvas();
-    addEventListener('resize', sizeCanvas);
-    addEventListener('scroll', onScroll, { passive: true });
-    film.addEventListener('loadeddata', onScroll, { once: true });
-
-    new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting;
-      if (visible && !raf) raf = requestAnimationFrame(tick);
-    }, { rootMargin: '15%' }).observe(section);
-
-    // Frame cache: extracted from a same-origin blob copy so canvas reads never taint.
-    async function extractFrames() {
-      let blob;
-      try {
-        const res = await fetch(GLOW_VIDEO_URL);
-        blob = await res.blob();
-      } catch { return; }
-
-      const url = URL.createObjectURL(blob);
-      const off = document.createElement('video');
-      off.src = url; off.muted = true; off.playsInline = true; off.preload = 'auto';
-
-      await new Promise((resolve) => {
-        off.addEventListener('loadedmetadata', resolve, { once: true });
-        off.addEventListener('error', resolve, { once: true });
+    for (const row of rows) {
+      row.addEventListener('pointerenter', () => {
+        if (img.getAttribute('src') !== row.dataset.peek) img.src = row.dataset.peek;
+        peek.classList.add('is-on');
       });
-      if (!off.duration) { URL.revokeObjectURL(url); return; }
+    }
 
-      const count = Math.min(90, Math.max(30, Math.round(off.duration * 20)));
-      const width = Math.min(1000, off.videoWidth || 1000);
-      const height = Math.round(width * ((off.videoHeight / off.videoWidth) || 0.5625));
-      const scratch = document.createElement('canvas');
-      scratch.width = width; scratch.height = height;
-      const sctx = scratch.getContext('2d');
+    list.addEventListener('pointerleave', () => {
+      peek.classList.remove('is-on');
+      active = false;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    });
+  })();
 
-      const bitmaps = [];
-      for (let i = 0; i < count; i++) {
-        const time = (i / (count - 1)) * Math.max(off.duration - 0.05, 0);
-        await new Promise((resolve) => {
-          const onSeeked = () => { off.removeEventListener('seeked', onSeeked); resolve(); };
-          off.addEventListener('seeked', onSeeked);
-          off.currentTime = time;
-        });
-        sctx.drawImage(off, 0, 0, width, height);
-        try { bitmaps.push(await createImageBitmap(scratch)); } catch { break; }
-      }
-      URL.revokeObjectURL(url);
+  // ---- Hero depth: the photo drifts at a fraction of scroll speed inside its
+  // 8% overscan. Clamped so it can never expose the crop edge.
+  (function heroParallax() {
+    if (reduced) return;
+    const img = document.querySelector('.hero__media img');
+    const media = document.querySelector('.hero__media');
+    if (!img || !media) return;
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const y = window.scrollY;
+      if (y > innerHeight * 1.3) return;   // hero is gone — skip the write
+      const max = media.offsetHeight * 0.075;
+      img.style.transform = `translate3d(0,${Math.min(y * 0.1, max).toFixed(1)}px,0)`;
+    }
+    addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  })();
 
-      if (bitmaps.length > 1) {
-        frames = bitmaps;
-        framesReady = true;
-        canvas.classList.add('is-ready');
-        film.classList.add('is-hidden');
-        raf = raf || requestAnimationFrame(tick);
+  // ---- Gallery wall: columns drift at different speeds as the section crosses
+  // the viewport. Pure transform work, rAF-throttled, disabled under reduced motion.
+  (function galleryWall() {
+    const section = document.getElementById('wall');
+    if (!section || reduced) return;
+    const cols = Array.from(section.querySelectorAll('.wall__col'));
+    if (!cols.length) return;
+
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > innerHeight) return;
+      // -1 entering from below … 0 centred … 1 leaving above
+      const centre = (rect.top + rect.height / 2 - innerHeight / 2) / (innerHeight / 2 + rect.height / 2);
+      for (const col of cols) {
+        const speed = parseFloat(col.dataset.speed) || 0;
+        col.style.transform = `translate3d(0,${(centre * speed).toFixed(2)}%,0)`;
       }
     }
 
-    if (!reduced) {
-      new IntersectionObserver((es, obs) => {
-        if (es[0].isIntersecting) { extractFrames(); obs.disconnect(); }
-      }, { rootMargin: '100% 0px' }).observe(section);
-    }
+    addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    addEventListener('resize', update, { passive: true });
+    update();
   })();
 
   // ---- Studio rail: auto-crawling marquee with drag + inertia physics ----
