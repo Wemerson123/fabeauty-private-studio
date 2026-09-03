@@ -262,7 +262,15 @@
   .svc-peek{position:fixed;top:0;left:0;z-index:40;width:min(23vw,290px);aspect-ratio:4/5;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .45s var(--ease),transform .6s var(--ease);box-shadow:0 44px 90px -34px rgba(8,33,27,.7)}
   .svc-peek.is-on{opacity:1;transform:translate(-50%,-50%) scale(1)}
   .svc-peek img{width:100%;height:100%;object-fit:cover}
-  @media(max-width:900px){.svc-row{grid-template-columns:auto minmax(0,1fr);row-gap:14px}.svc-row__meta{grid-column:2}}
+  /* No toque nao ha hover: a foto que flutua ao lado do cursor no desktop
+     vira uma miniatura fixa dentro da propria linha — mesma foto, sempre a
+     vista, sem roubar o toque (a linha inteira continua sendo o link). */
+  .svc-row__thumb{display:none}
+  @media(max-width:900px){
+    .svc-row{grid-template-columns:auto minmax(0,1fr) auto;row-gap:14px}
+    .svc-row__meta{grid-column:2}
+    .svc-row__thumb{display:block;grid-column:3;grid-row:1/3;width:clamp(76px,22vw,96px);aspect-ratio:4/5;object-fit:cover;align-self:center;margin-left:6px}
+  }
   @media(max-width:900px),(hover:none){.svc-peek{display:none}}
 
   /* ---------- Portfolio (3D coverflow carousel) ---------- */
@@ -459,6 +467,7 @@
         <p>Strengthening treatment on natural nails — a resilient, glass-like finish that lasts.</p>
       </div>
       <span class="svc-row__meta">From AU$75 · 1h&ndash;1h45 <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-13.jpg" alt="" loading="lazy" decoding="async">
     </a>
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-19.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
       <span class="svc-row__num">02</span>
@@ -467,6 +476,7 @@
         <p>Classic, unhurried hand and foot care finished with premium natural polish.</p>
       </div>
       <span class="svc-row__meta">From AU$60 <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-19.jpg" alt="" loading="lazy" decoding="async">
     </a>
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-16.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
       <span class="svc-row__num">03</span>
@@ -475,6 +485,7 @@
         <p>Wax &amp; shape, Korean lash lift and lash extensions — framing your natural expression.</p>
       </div>
       <span class="svc-row__meta">From AU$30 <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-16.jpg" alt="" loading="lazy" decoding="async">
     </a>
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-facial-01.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
       <span class="svc-row__num">04</span>
@@ -483,6 +494,7 @@
         <p>Skin-first facials and facial waxing, tailored to renew and restore your complexion.</p>
       </div>
       <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-facial-01.jpg" alt="" loading="lazy" decoding="async">
     </a>
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-massage.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
       <span class="svc-row__num">05</span>
@@ -491,6 +503,7 @@
         <p>Tension-relief massage in a calming, private setting — space to fully switch off.</p>
       </div>
       <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-massage.jpg" alt="" loading="lazy" decoding="async">
     </a>
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-01.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
       <span class="svc-row__num">06</span>
@@ -499,6 +512,7 @@
         <p>A signature body treatment, designed to sculpt, tone and leave skin renewed.</p>
       </div>
       <span class="svc-row__meta">Enquire for pricing <i>&#8594;</i></span>
+      <img class="svc-row__thumb" src="assets/gallery/final/studio-01.jpg" alt="" loading="lazy" decoding="async">
     </a>
   </div>
   <!-- Seeded with row 01's photo so it ships a real image and the first hover
