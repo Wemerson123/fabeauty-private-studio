@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fabeauty Skin &amp; Beauty Studio | Maroochydore</title>
 <meta name="description" content="Private beauty studio in Maroochydore offering personalised nails, brows, lashes, facial rituals and massage treatments. Book your appointment online.">
-<meta name="theme-color" content="#08211B">
+<meta name="theme-color" content="#F8F4EE">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
 <link rel="canonical" href="https://wemerson123.github.io/fabeauty-private-studio/">
@@ -358,6 +358,95 @@
     /* o rodape precisa de folga para a barra nao cobrir a ultima linha */
     footer{padding-bottom:96px}
   }
+
+  /* =====================================================================
+     REFINO — paleta clara (briefing, item 3)
+     Off-white, bege, nude, rose suave e dourado discreto. Nenhum texto ou
+     foto muda; so o vestido. Fica no fim do CSS para vencer por ordem e
+     poder ser removido de uma vez se preciso.
+     ===================================================================== */
+  :root{
+    --cream:#F8F4EE;        /* off-white: fundo geral            */
+    --cream-deep:#EFE7DC;   /* bege: fundos secundarios          */
+    --nude:#E9DACB;         /* nude: agendamento                 */
+    --rose:#D9A9A0;         /* rose suave                        */
+    --rose-deep:#B8806F;    /* rose fechado: hover               */
+    --ink:#2B241E;
+    --ink-soft:#6B5F52;
+    --gold:#A98A5B;         /* dourado discreto: linhas/eyebrow  */
+    --accent:#B5875E;       /* rose-dourado: italicos e enfases  */
+    /* variaveis antigas repontadas — nada quebra, tudo clareia */
+    --emerald:#2B241E;      /* botoes cheios, selo, hover        */
+    --emerald-deep:#F3ECE2;
+    --emerald-mid:#EFE7DC;
+    --emerald-glow:#E9DACB;
+    --gold-light:#B5875E;
+  }
+  body{font-weight:400}
+
+  /* botoes: um so sistema para o site inteiro */
+  .btn-solid{background:var(--ink);color:var(--cream);box-shadow:none}
+  .btn-solid:hover{background:var(--rose-deep);color:#fff;transform:translateY(-2px);box-shadow:0 12px 28px -14px rgba(43,36,30,.45)}
+  .btn-cream{border:1px solid rgba(43,36,30,.32);color:var(--ink)}
+  .btn-cream:hover{background:var(--ink);color:var(--cream)}
+  .book-bar{background:var(--ink)!important;color:var(--cream)!important;border-color:transparent!important;box-shadow:0 10px 30px rgba(43,36,30,.22)!important}
+
+  /* menu: sempre sobre fundo claro */
+  nav{--nav-fg:var(--ink);--nav-fg-contrast:var(--cream)}
+  nav.scrolled{background:rgba(248,244,238,.82);box-shadow:0 1px 0 rgba(43,36,30,.07)}
+  .wordmark img{filter:none}
+
+  /* capa */
+  .hero{background:var(--cream)}
+  .hero:before{display:none}
+  .hero__grid{color:var(--ink);padding-top:clamp(140px,18vh,200px)}
+  .hero__rating{color:var(--ink-soft);border-bottom-color:rgba(43,36,30,.14)}
+  .hero__rating b{color:var(--accent)}
+  .hero h1 em{color:var(--accent)}
+  .hero p{color:var(--ink-soft)}
+  .hero__media:after{background:linear-gradient(100deg,rgba(248,244,238,.35) 0%,transparent 40%)}
+  .hero__scroll{color:var(--ink-soft)}
+  .hero__scroll i{background:linear-gradient(90deg,var(--gold),transparent)}
+
+  /* sobre */
+  .about__badge{background:var(--ink);color:var(--cream)}
+  .about__badge b{color:#E4CFA6}
+  .about h2 em,.section-head h2 em,.reviews h2 em{color:var(--accent)}
+
+  /* citacao */
+  .muse{background:var(--cream-deep);color:var(--ink)}
+  .muse__art{background:var(--cream-deep)}
+  .muse__art:after{border-color:rgba(169,138,91,.45)}
+  .muse__quote cite{color:var(--ink-soft)}
+
+  /* faixa de fotos */
+  .rail-section{background:var(--cream);color:var(--ink)}
+  .rail-section .section-head h2{color:var(--ink)}
+  .rail-section .section-head h2 em{color:var(--accent)}
+
+  /* mural: as fotos ficam, o veu escuro vira um veu claro e quente */
+  .wall{background:var(--cream-deep);color:var(--ink)}
+  .wall__col img{filter:saturate(.9) contrast(1.02) brightness(1)}
+  .wall__veil{background:radial-gradient(ellipse 820px 600px at 50% 50%,rgba(248,244,238,.94) 0%,rgba(248,244,238,.86) 42%,rgba(248,244,238,.72) 100%)}
+  .wall h2 em{color:var(--accent)}
+  .wall p{color:var(--ink-soft)}
+
+  /* agendamento: nude com um sopro de rose, sem video */
+  .booking{background:linear-gradient(160deg,var(--nude) 0%,#F1E3DB 55%,var(--cream-deep) 100%);color:var(--ink)}
+  .booking h2 em{color:var(--accent)}
+  .booking p{color:var(--ink-soft)}
+  .hours{border-top-color:rgba(43,36,30,.16)}
+  .hours .row{border-bottom-color:rgba(43,36,30,.12)}
+  .booking__addr{color:var(--ink-soft)}
+  .booking__addr b{color:var(--ink)}
+  /* na secao de agendamento o botao e' o principal da pagina: cheio, nao contorno */
+  .booking .btn-cream{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .booking .btn-cream:hover{background:var(--rose-deep);color:#fff;border-color:var(--rose-deep)}
+
+  /* rodape */
+  footer{background:var(--cream-deep);color:var(--ink-soft);border-top:1px solid rgba(43,36,30,.08)}
+  footer a{color:var(--ink)}
+  footer b{color:var(--ink);font-weight:500}
 </style>
 </head>
 <body>
@@ -378,7 +467,7 @@
   </div>
 </nav>
 
-<section class="hero" data-nav-bg="dark">
+<section class="hero" data-nav-bg="light">
   <div class="hero__grid">
     <div class="hero__copy">
       <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;184 reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
@@ -472,7 +561,7 @@
   </div>
 </section>
 
-<section class="muse" data-nav-bg="dark">
+<section class="muse" data-nav-bg="light">
   <div class="muse__inner">
     <figure class="muse__art" data-reveal>
       <img src="assets/gallery/final/studio-fabiana-portrait.jpg" alt="Fabiana, founder of Fabeauty Private Studio, in the studio" loading="lazy" decoding="async">
@@ -509,7 +598,7 @@
   </div>
 </section>
 
-<section class="rail-section" data-nav-bg="dark">
+<section class="rail-section" data-nav-bg="light">
   <div class="section-head">
     <div class="eyebrow" style="justify-content:center" data-reveal>Inside Fabeauty</div>
     <h2 data-reveal class="d1">A private studio,<br><em>designed to slow down in.</em></h2>
@@ -578,7 +667,7 @@
   </div>
 </section>
 
-<section class="wall" id="wall" data-nav-bg="dark">
+<section class="wall" id="wall" data-nav-bg="light">
   <div class="wall__cols" aria-hidden="true">
     <div class="wall__col" data-speed="-14">
       <img src="assets/gallery/final/studio-27.jpg" alt="" loading="lazy" decoding="async">
@@ -613,13 +702,7 @@
   </div>
 </section>
 
-<section class="booking" id="booking" data-nav-bg="dark">
-  <div class="booking__bloom" aria-hidden="true">
-    <video data-ambient poster="assets/video/flower-bloom.jpg" muted loop playsinline preload="none">
-      <source src="assets/video/flower-bloom.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="booking__scrim" aria-hidden="true"></div>
+<section class="booking" id="booking" data-nav-bg="light">
   <div class="booking__inner">
     <div>
       <div class="eyebrow" data-reveal>Reserve Your Visit</div>
@@ -647,7 +730,7 @@
   </div>
 </section>
 
-<footer data-nav-bg="dark">
+<footer data-nav-bg="light">
   <span><b>Fabeauty Private Studio</b> &middot; Maroochydore, Sunshine Coast QLD &middot; By appointment only</span>
   <a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment ↗</a>
   <small>&copy; 2026 Fabeauty Private Studio</small>
