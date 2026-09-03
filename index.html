@@ -89,10 +89,11 @@
   .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .4s var(--ease)}
   /* Neutral elevation, not a gold halo: a chromatic glow on the dark hero ground
      is the stock "AI UI" look and fights the restraint the rest of the page keeps. */
-  .btn-solid{background:var(--emerald);color:var(--cream);box-shadow:0 0 0 0 rgba(8,33,27,0)}
-  /* Hover lightens, never darkens: an ink fill on the emerald-deep hero ground
-     made the primary action sink into the page at the exact moment of intent. */
-  .btn-solid:hover{background:var(--cream);color:var(--ink);transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(8,33,27,.55)}
+  /* The primary action is the one light block on the emerald ground. As a green
+     fill it sat green-on-green and read as a lighter patch of background, not
+     as the page's main action. Hover warms to gold instead of darkening. */
+  .btn-solid{background:var(--cream);color:var(--ink);box-shadow:0 0 0 0 rgba(8,33,27,0)}
+  .btn-solid:hover{background:var(--gold-light);color:var(--ink);transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(8,33,27,.55)}
   .btn .arw{font-style:normal;display:inline-block;transition:transform .45s var(--ease)}
   .btn:hover .arw{transform:translateX(5px)}
   .btn-outline{border:1px solid rgba(43,36,25,.3);color:var(--ink)}
@@ -360,16 +361,23 @@
   footer{background:var(--emerald-deep);color:rgba(250,245,236,.6);padding:36px 5vw;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.08em}
   footer a{text-decoration:none;color:var(--gold-light)}
 
-  /* ---------- Barra fixa de agendamento (so no celular) ---------- */
+  /* ---------- Barra fixa de agendamento (so no celular) ----------
+     Bloco claro, na mesma lingua do CTA primario — a tarja esmeralda sumia nos
+     fundos verdes e pesava sobre as fotos. E ela so entra depois que o CTA do
+     hero sai de cena: na primeira tela as duas chamadas iguais empilhavam. */
   .book-bar{display:none}
   @media(max-width:760px){
     .book-bar{display:flex;align-items:center;justify-content:center;position:fixed;left:14px;right:14px;bottom:14px;z-index:120;
-      min-height:54px;padding:16px 20px;background:var(--emerald);color:var(--cream);text-decoration:none;
-      font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-      box-shadow:0 10px 30px rgba(8,33,27,.28);border:1px solid rgba(228,203,153,.35)}
+      min-height:54px;padding:16px 20px;background:var(--cream);color:var(--ink);text-decoration:none;
+      font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+      box-shadow:0 18px 44px -12px rgba(8,33,27,.45);border:1px solid rgba(168,133,74,.4);
+      transform:translateY(calc(100% + 18px));transition:transform .6s var(--ease)}
+    .book-bar.is-on{transform:translateY(0)}
+    html.no-js .book-bar{transform:none}
     /* o rodape precisa de folga para a barra nao cobrir a ultima linha */
     footer{padding-bottom:96px}
   }
+  @media(prefers-reduced-motion:reduce){.book-bar{transition:none}}
 </style>
 </head>
 <body>
@@ -761,6 +769,25 @@
   addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
+
+  // ---- Barra de agendamento: aparece quando o hero (e seu CTA) ja saiu de
+  // cena, e recolhe se a cliente voltar ao topo. Presenca, nao movimento — por
+  // isso roda tambem sob reduced-motion (la a transicao e' cortada no CSS).
+  (function bookBar() {
+    // a barra vive DEPOIS deste <script> no documento — armar so com o DOM completo
+    function arm() {
+      const bar = document.querySelector('.book-bar');
+      const hero = document.querySelector('.hero');
+      if (!bar || !hero) return;
+      const io = new IntersectionObserver((entries) => {
+        const e = entries[entries.length - 1];
+        bar.classList.toggle('is-on', !e.isIntersecting);
+      }, { threshold: 0 });
+      io.observe(hero);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arm, { once: true });
+    else arm();
+  })();
 
   // ---- Nav contrast: swap wordmark/links between cream and ink depending on
   // whether the section currently sitting behind the nav is dark or light ----
