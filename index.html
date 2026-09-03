@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <script>document.documentElement.classList.remove('no-js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fabeauty Private Studio — Natural Beauty, Considered.</title>
-<meta name="description" content="A private beauty studio in Maroochydore. Nails, brows &amp; lashes, facials and massage — every detail focused on your natural beauty. Book on Fresha.">
+<title>Fabeauty Skin &amp; Beauty Studio | Maroochydore</title>
+<meta name="description" content="Private beauty studio in Maroochydore offering personalised nails, brows, lashes, facial rituals and massage treatments. Book your appointment online.">
 <meta name="theme-color" content="#08211B">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
@@ -14,8 +14,8 @@
      unfurl with the room photo, not as a bare URL. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fabeauty Private Studio">
-<meta property="og:title" content="Fabeauty Private Studio — Natural Beauty, Considered.">
-<meta property="og:description" content="A private beauty studio in Maroochydore. Nails, brows &amp; lashes, facials and massage. Book on Fresha.">
+<meta property="og:title" content="Fabeauty Skin &amp; Beauty Studio | Maroochydore">
+<meta property="og:description" content="Private beauty studio in Maroochydore offering personalised nails, brows, lashes, facial rituals and massage treatments. Book your appointment online.">
 <meta property="og:url" content="https://wemerson123.github.io/fabeauty-private-studio/">
 <meta property="og:image" content="https://wemerson123.github.io/fabeauty-private-studio/assets/gallery/final/studio-hero-room.jpg">
 <meta property="og:image:width" content="1600">
@@ -31,7 +31,6 @@
   "image": "https://wemerson123.github.io/fabeauty-private-studio/assets/gallery/final/studio-hero-room.jpg",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "64 Anzac Avenue, Unit 2",
     "addressLocality": "Maroochydore",
     "addressRegion": "QLD",
     "addressCountry": "AU"
@@ -162,7 +161,9 @@
   .hero__copy{max-width:620px}
   .hero__rating{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,241,232,.72);margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid rgba(228,203,153,.22)}
   .hero__rating b{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.02em;text-transform:none}
-  .hero h1{font-size:clamp(46px,7vw,104px);line-height:.94;letter-spacing:-.025em;margin:0 0 30px}
+  /* Titulo mais longo que o anterior: o teto cai de 104px para 62px, senao
+     "Personalised beauty and wellness" estoura a coluna. */
+  .hero h1{font-size:clamp(33px,4vw,56px);line-height:1.08;letter-spacing:-.018em;margin:0 0 28px}
   .hero h1 em{font-style:italic;color:var(--gold-light);letter-spacing:-.01em}
   /* Per-line mask reveal: each line rises from behind its own clip. The padding/
      negative-margin pair gives the serif's ascenders, descenders and italic
@@ -171,6 +172,7 @@
   .hero h1 .line{display:block;overflow:hidden;padding:.16em .1em .22em;margin:-.16em -.1em -.22em}
   .hero h1 .line>span{display:block;transform:translateY(135%);transition:transform 1.15s var(--ease)}
   .hero h1 .line:nth-child(2)>span{transition-delay:.14s}
+  .hero h1 .line:nth-child(3)>span{transition-delay:.28s}
   .hero h1.is-in .line>span{transform:translateY(0)}
   @media(prefers-reduced-motion:reduce){.hero h1 .line>span{transition:none}}
   .hero p{font-size:clamp(15px,1.15vw,17px);line-height:1.8;color:rgba(245,241,232,.72);max-width:430px;margin:0 0 44px}
@@ -185,7 +187,7 @@
   .hero__scroll i{width:52px;height:1px;background:linear-gradient(90deg,var(--gold-light),transparent);animation:scrollLine 2.4s ease-in-out infinite;transform-origin:left}
   @keyframes scrollLine{0%{transform:scaleX(0);opacity:0}40%{opacity:1}100%{transform:scaleX(1);opacity:0}}
   @media(max-width:1024px){.hero__grid{grid-template-columns:1fr;padding:130px 6vw 90px;gap:44px}.hero__media{min-height:clamp(300px,44vh,420px);margin:0;width:calc(100% + 6vw)}.hero__copy{max-width:none}}
-  @media(max-width:760px){.hero__scroll{display:none}.hero h1{font-size:clamp(40px,11vw,60px)}}
+  @media(max-width:760px){.hero__scroll{display:none}.hero h1{font-size:clamp(29px,7.4vw,40px)}.hero p{font-size:16px}}
 
   /* ---------- About ---------- */
   .about{padding:150px 5vw;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:center}
@@ -345,26 +347,20 @@
 
   footer{background:var(--emerald-deep);color:rgba(250,245,236,.6);padding:36px 5vw;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.08em}
   footer a{text-decoration:none;color:var(--gold-light)}
+
+  /* ---------- Barra fixa de agendamento (so no celular) ---------- */
+  .book-bar{display:none}
+  @media(max-width:760px){
+    .book-bar{display:flex;align-items:center;justify-content:center;position:fixed;left:14px;right:14px;bottom:14px;z-index:120;
+      min-height:54px;padding:16px 20px;background:var(--emerald);color:var(--cream);text-decoration:none;
+      font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+      box-shadow:0 10px 30px rgba(8,33,27,.28);border:1px solid rgba(228,203,153,.35)}
+    /* o rodape precisa de folga para a barra nao cobrir a ultima linha */
+    footer{padding-bottom:96px}
+  }
 </style>
 </head>
 <body>
-
-<div class="intro" id="intro" role="presentation">
-  <div class="intro__film" id="introFilm" aria-hidden="true">
-    <!-- trimmed to the clip's first 3.6s: past that the figure's eyes open and
-         the frontal stare turns uncanny, which is the wrong first impression -->
-    <video id="introVideo" poster="assets/video/muse-intro.jpg" muted loop playsinline preload="auto">
-      <source src="assets/video/muse-intro-loop.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="intro__veil" aria-hidden="true"></div>
-  <div class="intro__mark">
-    <img class="intro__logo" src="assets/brand/logo.png" alt="" width="436" height="384" fetchpriority="high">
-    <div class="intro__rule" aria-hidden="true"></div>
-    <div class="intro__tag">Maroochydore &middot; Queensland</div>
-  </div>
-  <div class="intro__skip">Tap to enter</div>
-</div>
 
 <nav id="nav">
   <!-- compact lockup: the full logo's "Private Beauty Studio" line is unreadable
@@ -373,10 +369,11 @@
     <img src="assets/brand/logo-mark.png" alt="Fabeauty Private Beauty Studio" width="436" height="322">
   </a>
   <div class="nav-links">
+    <a href="#services">Treatments</a>
     <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
+    <a href="#portfolio">Gallery</a>
     <a href="#reviews">Reviews</a>
+    <a href="#booking">Contact</a>
     <a class="btn nav-book" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Now</a>
   </div>
 </nav>
@@ -385,11 +382,11 @@
   <div class="hero__grid">
     <div class="hero__copy">
       <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;184 reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
-      <h1 data-reveal class="d1"><span class="line"><span>Natural beauty,</span></span><span class="line"><span><em>quietly considered.</em></span></span></h1>
-      <p data-reveal class="d2">A private studio in Maroochydore where every detail — from the first hello to the final polish — is focused on making you feel confident, relaxed and renewed.</p>
+      <h1 data-reveal class="d1"><span class="line"><span>Personalised beauty</span></span><span class="line"><span>and wellness treatments</span></span><span class="line"><span><em>in Maroochydore</em></span></span></h1>
+      <p data-reveal class="d2">A private boutique studio offering nails, brows, lashes, facial rituals and massage treatments in a calm and welcoming environment.</p>
       <div class="hero__ctas d3" data-reveal>
-        <a class="btn btn-solid" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
-        <a class="btn btn-cream" href="#services">View Services</a>
+        <a class="btn btn-solid" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment →</a>
+        <a class="btn btn-cream" href="#services">Explore Treatments</a>
       </div>
     </div>
     <div class="hero__media d2" data-reveal>
@@ -628,11 +625,11 @@
       <div class="eyebrow" data-reveal>Reserve Your Visit</div>
       <h2 data-reveal class="d1">Your natural beauty,<br><em>booked in minutes.</em></h2>
       <p data-reveal class="d2">Instant confirmation, pay through the app, and a studio that's entirely yours for the appointment. Book directly through Fresha.</p>
-      <a class="btn btn-cream d3" data-reveal href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha →</a>
+      <a class="btn btn-cream d3" data-reveal href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment →</a>
       <div class="booking__addr d4" data-reveal>
-        <b>Fabeauty Private Studio</b>
-        64 Anzac Avenue, Unit 2<br>
-        Maroochydore, Queensland, Australia
+        <b>Private beauty studio in Maroochydore, Sunshine Coast</b>
+        By appointment only.<br>
+        Full address details are provided with your booking confirmation.
       </div>
     </div>
     <div data-reveal class="d2">
@@ -651,62 +648,12 @@
 </section>
 
 <footer data-nav-bg="dark">
-  <span>&copy; Fabeauty Private Studio &middot; Maroochydore, QLD</span>
-  <a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book on Fresha ↗</a>
+  <span><b>Fabeauty Private Studio</b> &middot; Maroochydore, Sunshine Coast QLD &middot; By appointment only</span>
+  <a href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment ↗</a>
+  <small>&copy; 2026 Fabeauty Private Studio</small>
 </footer>
 
 <script>
-  // ---- Brand intro: holds ~4s, then lifts. Skippable by click/key/scroll, and
-  // guarded so a missed transitionend or a thrown error above can never leave the
-  // overlay covering the page.
-  (function brandIntro() {
-    const intro = document.getElementById('intro');
-    if (!intro) return;
-
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const HOLD = reduceMotion ? 900 : 6000;
-    let done = false;
-
-    document.body.style.overflow = 'hidden';
-
-    // Progressive enhancement: emerald + poster carry the frame from the first
-    // paint; the film is only revealed once it can actually play, so a slow
-    // connection gets the plain intro instead of a stall.
-    const film = document.getElementById('introFilm');
-    const video = document.getElementById('introVideo');
-    if (film && video && !reduceMotion) {
-      const reveal = () => film.classList.add('is-ready');
-      if (video.readyState >= 3) reveal();
-      else video.addEventListener('canplay', reveal, { once: true });
-      video.play().catch(() => {});   // refusal is fine — poster stays put
-    }
-
-    function dismiss() {
-      if (done) return;
-      done = true;
-      document.body.style.overflow = '';
-      intro.classList.add('is-out');
-      // the hero entrance waits for this — otherwise it plays behind the
-      // opaque overlay and the curtain lifts on an already-finished scene
-      document.dispatchEvent(new CustomEvent('intro:done'));
-      // remove from the a11y tree and paint path once it has faded
-      setTimeout(() => { intro.hidden = true; }, 1100);
-      removeEventListener('keydown', onKey);
-      removeEventListener('wheel', dismiss);
-      removeEventListener('touchmove', dismiss);
-    }
-    function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') dismiss(); }
-
-    intro.addEventListener('click', dismiss);
-    addEventListener('keydown', onKey);
-    addEventListener('wheel', dismiss, { passive: true });
-    addEventListener('touchmove', dismiss, { passive: true });
-
-    setTimeout(dismiss, HOLD);
-    // hard backstop: whatever happens, the page is never locked past this
-    setTimeout(() => { document.body.style.overflow = ''; }, HOLD + 3000);
-  })();
-
   // ---- Nav scroll state ----
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => {
@@ -995,5 +942,9 @@
     track.addEventListener('pointercancel', endDrag);
   })();
 </script>
+<!-- No celular o botao de agendamento sai da tela assim que a cliente rola.
+     Esta barra o mantem sempre ao alcance do polegar. -->
+<a class="book-bar" href="https://www.fresha.com/pt/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment</a>
+
 </body>
 </html>
