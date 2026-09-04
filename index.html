@@ -47,7 +47,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Only the weights the CSS actually sets: Cormorant 400/500 (+italics), Jost 300/400/500. -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     /* Palette drawn from the studio itself: emerald velvet chairs, brushed
@@ -107,6 +108,24 @@
   [data-reveal].d2{transition-delay:.2s}
   [data-reveal].d3{transition-delay:.3s}
   [data-reveal].d4{transition-delay:.4s}
+  /* Per-line mask reveal — one type choreography for every display heading, not
+     just the hero. The padding/negative-margin pair shelters Cormorant's
+     ascenders, descenders and italic overhang inside each line's clip. */
+  .masked[data-reveal]{transform:none}
+  .masked .line{display:block;overflow:hidden;padding:.16em .1em .22em;margin:-.16em -.1em -.22em}
+  .masked .line>span{display:block;transform:translateY(135%);transition:transform 1.15s var(--ease)}
+  .masked .line:nth-child(2)>span{transition-delay:.14s}
+  .masked .line:nth-child(3)>span{transition-delay:.28s}
+  .masked.is-in .line>span{transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){.masked .line>span{transition:none}}
+  /* Photography settles from a light zoom as it reveals. The `scale` property
+     composes with any `transform` the parallax writes, so they never fight. */
+  .zs img{scale:1.05;transition:scale 1.6s var(--ease);transform-origin:center}
+  .zs.is-in img{scale:1}
+  @media(prefers-reduced-motion:reduce){.zs img{scale:1;transition:none}}
+  /* Without JS nothing may stay hidden behind an entrance that will never run. */
+  html.no-js [data-reveal]{opacity:1;transform:none}
+  html.no-js .masked .line>span{transform:none}
 
   /* ---------- Brand intro ----------
      Runs on the same emerald as the hero, so the curtain lift reveals the page
@@ -160,6 +179,13 @@
   .nav-links{display:flex;align-items:center;gap:38px}
   .nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--nav-fg);opacity:.75;transition:opacity .3s,color .4s ease}
   .nav-links a:hover{opacity:1}
+  /* Gold hairline sweeps in under the link and leaves the way it came — the
+     same rule-wipe language the service rows speak. */
+  .nav-links a:not(.nav-book){position:relative}
+  .nav-links a:not(.nav-book):after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--gold-light);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+  nav.on-light .nav-links a:not(.nav-book):after{background:var(--gold)}
+  .nav-links a:not(.nav-book):hover:after,.nav-links a:not(.nav-book):focus-visible:after{transform:scaleX(1);transform-origin:left}
+  @media(prefers-reduced-motion:reduce){.nav-links a:not(.nav-book):after{transition:none}}
   .nav-book{padding:12px 22px;font-size:10.5px;border:1px solid var(--nav-fg);color:var(--nav-fg);transition:all .4s var(--ease)}
   .nav-book:hover{background:var(--nav-fg);color:var(--nav-fg-contrast)}
   @media(max-width:860px){.nav-links a:not(.nav-book){display:none}}
@@ -172,22 +198,16 @@
   .hero:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 900px 700px at 12% 30%,rgba(30,122,92,.30) 0%,transparent 62%)}
   .hero__grid{position:relative;z-index:3;width:100%;max-width:1560px;margin:0 auto;padding:clamp(130px,17vh,190px) 0 clamp(90px,12vh,120px) 6vw;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(40px,5vw,80px);align-items:center;color:var(--cream)}
   .hero__copy{max-width:620px}
-  .hero__rating{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,241,232,.72);margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid rgba(228,203,153,.22)}
+  .hero__rating{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,241,232,.72);margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid rgba(228,203,153,.22);font-variant-numeric:tabular-nums}
+  /* Reserved width so the climbing count never nudges the words beside it. */
+  #ratingCount{display:inline-block;min-width:3ch;text-align:right}
   .hero__rating b{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.02em;text-transform:none}
   /* Titulo mais longo que o anterior: o teto cai de 104px para 62px, senao
      "Personalised beauty and wellness" estoura a coluna. */
   .hero h1{font-size:clamp(33px,4vw,56px);line-height:1.08;letter-spacing:-.018em;margin:0 0 28px}
   .hero h1 em{font-style:italic;color:var(--gold-light);letter-spacing:-.01em}
-  /* Per-line mask reveal: each line rises from behind its own clip. The padding/
-     negative-margin pair gives the serif's ascenders, descenders and italic
-     overhang room inside the clip without shifting layout. */
-  .hero h1[data-reveal]{transform:none}
-  .hero h1 .line{display:block;overflow:hidden;padding:.16em .1em .22em;margin:-.16em -.1em -.22em}
-  .hero h1 .line>span{display:block;transform:translateY(135%);transition:transform 1.15s var(--ease)}
-  .hero h1 .line:nth-child(2)>span{transition-delay:.14s}
-  .hero h1 .line:nth-child(3)>span{transition-delay:.28s}
-  .hero h1.is-in .line>span{transform:translateY(0)}
-  @media(prefers-reduced-motion:reduce){.hero h1 .line>span{transition:none}}
+  /* Line masking now lives in the shared .masked rules — same choreography
+     as every other display heading on the page. */
   .hero p{font-size:clamp(15px,1.15vw,17px);line-height:1.8;color:rgba(245,241,232,.72);max-width:430px;margin:0 0 44px}
   .hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
   /* full-bleed to the right edge — deliberately not a contained card */
@@ -199,6 +219,7 @@
   .hero__scroll{position:absolute;z-index:4;left:6vw;bottom:38px;display:flex;align-items:center;gap:14px;color:var(--cream);opacity:.55;font-size:9px;letter-spacing:.28em;text-transform:uppercase}
   .hero__scroll i{width:52px;height:1px;background:linear-gradient(90deg,var(--gold-light),transparent);animation:scrollLine 2.4s ease-in-out infinite;transform-origin:left}
   @keyframes scrollLine{0%{transform:scaleX(0);opacity:0}40%{opacity:1}100%{transform:scaleX(1);opacity:0}}
+  @media(prefers-reduced-motion:reduce){.hero__scroll i{animation:none;transform:scaleX(1);opacity:.6}}
   @media(max-width:1024px){.hero__grid{grid-template-columns:1fr;padding:130px 6vw 90px;gap:44px}.hero__media{min-height:clamp(300px,44vh,420px);margin:0;width:calc(100% + 6vw)}.hero__copy{max-width:none}}
   @media(max-width:760px){.hero__scroll{display:none}.hero h1{font-size:clamp(29px,7.4vw,40px)}.hero p{font-size:16px}}
 
@@ -208,11 +229,14 @@
   /* Offset hairline frame behind the photo — the same device as the muse panel's
      border, here shifted up-right so the composition gets a second layer. */
   .about__media:before{content:"";position:absolute;top:-16px;right:-16px;bottom:16px;left:16px;border:1px solid rgba(168,133,74,.5);pointer-events:none}
+  /* The clip lives on its own wrapper: overflow on .about__media itself would
+     amputate the offset hairline frame and the overhanging badge. */
+  .about__media-clip{position:relative;overflow:hidden}
   .about__media img{position:relative;width:100%;height:600px;object-fit:cover}
   .about__badge{position:absolute;left:-36px;bottom:-36px;background:var(--emerald);color:var(--cream);padding:30px 34px;max-width:230px}
   .about__badge b{display:block;font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold-light);margin-bottom:6px}
   .about__badge span{font-size:10.5px;letter-spacing:.12em;line-height:1.5;text-transform:uppercase;opacity:.85}
-  .about h2{font-size:clamp(38px,4.4vw,58px);line-height:1.05;margin:22px 0 26px}
+  .about h2{font-size:clamp(38px,4.4vw,58px);line-height:1.05;letter-spacing:-.02em;margin:22px 0 26px}
   .about h2 em{font-style:italic;color:var(--emerald)}
   .about p{font-size:16px;line-height:1.85;color:var(--ink-soft);max-width:480px;margin:0 0 20px}
   @media(max-width:900px){.about{grid-template-columns:1fr;gap:90px;padding:120px 6vw}.about__media img{height:420px}.about__badge{left:0;right:auto;bottom:-28px}}
@@ -236,7 +260,7 @@
   /* ---------- Services ---------- */
   .services{padding:clamp(110px,14vh,168px) 6vw;max-width:1400px;margin:0 auto}
   .section-head{text-align:center;max-width:640px;margin:0 auto 80px}
-  .section-head h2{font-size:clamp(38px,4.6vw,60px);line-height:1.05;margin:20px 0 0}
+  .section-head h2{font-size:clamp(38px,4.6vw,60px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 0}
   .section-head h2 em{font-style:italic;color:var(--emerald)}
   /* Editorial service list — rows, not cards. Hovering a row floats the
      matching photograph beside the cursor, so the menu doubles as portfolio. */
@@ -354,7 +378,7 @@
      enough to drop cream text under AA without it. */
   .booking__scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(18,80,62,.72) 0%,rgba(18,80,62,.44) 55%,rgba(18,80,62,.30) 100%)}
   .booking__inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:70px}
-  .booking h2{font-size:clamp(38px,4.8vw,60px);line-height:1.05;margin:0 0 26px}
+  .booking h2{font-size:clamp(38px,4.8vw,60px);line-height:1.05;letter-spacing:-.02em;margin:0 0 26px}
   .booking h2 em{font-style:italic;color:var(--gold-light)}
   /* .88 not .78 — at .78 this drops to 4.34:1 against the brightest petal */
   .booking p{font-size:15px;line-height:1.8;color:rgba(250,245,236,.88);max-width:420px;margin:0 0 34px}
@@ -426,15 +450,15 @@
 <section class="hero" data-nav-bg="dark">
   <div class="hero__grid">
     <div class="hero__copy">
-      <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;184 reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
-      <h1 data-reveal class="d1"><span class="line"><span>Personalised beauty</span></span><span class="line"><span>and wellness treatments</span></span><span class="line"><span><em>in Maroochydore</em></span></span></h1>
+      <div class="hero__rating" data-reveal><b>&#9733; 5.0</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="ratingCount">184</span>&nbsp;reviews&nbsp;&nbsp;·&nbsp;&nbsp;Highly recommended</div>
+      <h1 data-reveal class="masked d1"><span class="line"><span>Personalised beauty</span></span><span class="line"><span>and wellness treatments</span></span><span class="line"><span><em>in Maroochydore</em></span></span></h1>
       <p data-reveal class="d2">A private boutique studio offering nails, brows, lashes, facial rituals and massage treatments in a calm and welcoming environment.</p>
       <div class="hero__ctas d3" data-reveal>
         <a class="btn btn-solid" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment <i class="arw" aria-hidden="true">→</i></a>
         <a class="btn btn-cream" href="#services">Explore Treatments</a>
       </div>
     </div>
-    <div class="hero__media d2" data-reveal>
+    <div class="hero__media zs d2" data-reveal>
       <img src="assets/gallery/final/studio-hero-room.jpg" alt="Serene treatment room at Fabeauty Private Studio, with backlit mirror and plants">
     </div>
   </div>
@@ -442,13 +466,15 @@
 </section>
 
 <section class="about" id="about" data-nav-bg="light">
-  <div class="about__media" data-reveal>
-    <img src="assets/gallery/final/studio-about-nails.jpg" alt="Nail art station at Fabeauty Private Studio, with LED lamps and marble armrest" loading="lazy" decoding="async">
+  <div class="about__media zs" data-reveal>
+    <div class="about__media-clip">
+      <img src="assets/gallery/final/studio-about-nails.jpg" alt="Nail art station at Fabeauty Private Studio, with LED lamps and marble armrest" loading="lazy" decoding="async">
+    </div>
     <div class="about__badge"><b>5.0</b><span>Rated by 184 clients across the Sunshine Coast</span></div>
   </div>
   <div>
     <div class="eyebrow" data-reveal>The Studio</div>
-    <h2 data-reveal class="d1">A space to feel<br><em>confident, relaxed</em><br>and renewed.</h2>
+    <h2 data-reveal class="masked d1"><span class="line"><span>A space to feel</span></span><span class="line"><span><em>confident, relaxed</em></span></span><span class="line"><span>and renewed.</span></span></h2>
     <p data-reveal class="d2">At Fabeauty, you'll find a welcoming space designed with a professional and caring approach. Every detail is focused on enhancing your natural beauty while creating true moments of wellbeing.</p>
     <p data-reveal class="d3">Founded and run by Fabiana, the studio keeps every appointment private, unhurried, and entirely your own.</p>
   </div>
@@ -457,7 +483,7 @@
 <section class="services" id="services" data-nav-bg="light">
   <div class="section-head section-head--left">
     <div class="eyebrow" data-reveal>Signature Services</div>
-    <h2 data-reveal class="d1">Considered care,<br><em>from head to hand.</em></h2>
+    <h2 data-reveal class="masked d1"><span class="line"><span>Considered care,</span></span><span class="line"><span><em>from head to hand.</em></span></span></h2>
   </div>
   <div class="svc-list" id="svcList">
     <a class="svc-row" data-reveal data-peek="assets/gallery/final/studio-13.jpg" href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">
@@ -525,7 +551,7 @@
 
 <section class="muse" data-nav-bg="dark">
   <div class="muse__inner">
-    <figure class="muse__art" data-reveal>
+    <figure class="muse__art zs" data-reveal>
       <img src="assets/gallery/final/studio-fabiana-portrait.jpg" alt="Fabiana, founder of Fabeauty Private Studio, in the studio" loading="lazy" decoding="async">
     </figure>
     <blockquote class="muse__quote d1" data-reveal>
@@ -539,7 +565,7 @@
 <section class="portfolio" id="portfolio" data-nav-bg="light">
   <div class="section-head">
     <div class="eyebrow" style="justify-content:center" data-reveal>Portfolio</div>
-    <h2 data-reveal class="d1">Natural, glossy,<br><em>unmistakably Fabeauty.</em></h2>
+    <h2 data-reveal class="masked d1"><span class="line"><span>Natural, glossy,</span></span><span class="line"><span><em>unmistakably Fabeauty.</em></span></span></h2>
   </div>
   <div class="coverflow" data-reveal>
     <div class="coverflow__stage" id="cfStage">
@@ -563,7 +589,7 @@
 <section class="rail-section" data-nav-bg="dark">
   <div class="section-head">
     <div class="eyebrow" style="justify-content:center" data-reveal>Inside Fabeauty</div>
-    <h2 data-reveal class="d1">A private studio,<br><em>designed to slow down in.</em></h2>
+    <h2 data-reveal class="masked d1"><span class="line"><span>A private studio,</span></span><span class="line"><span><em>designed to slow down in.</em></span></span></h2>
   </div>
   <div class="rail-viewport">
     <div class="rail" id="rail">
@@ -597,7 +623,7 @@
 
 <section class="reviews" id="reviews" data-nav-bg="light">
   <div class="stars" data-reveal>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-  <h2 data-reveal class="d1">Highly recommended<br><em>by clients across the Sunshine Coast.</em></h2>
+  <h2 data-reveal class="masked d1"><span class="line"><span>Highly recommended</span></span><span class="line"><span><em>by clients across the Sunshine Coast.</em></span></span></h2>
   <div class="review-grid">
     <div class="review-card" data-reveal>
       <span class="review-card__quote" aria-hidden="true">&ldquo;</span>
@@ -659,7 +685,7 @@
   <div class="wall__veil"></div>
   <div class="wall__content">
     <div class="eyebrow" style="justify-content:center" data-reveal>The Ritual</div>
-    <h2 data-reveal class="d1">Beauty, <em>quietly in bloom.</em></h2>
+    <h2 data-reveal class="masked d1"><span class="line"><span>Beauty, <em>quietly in bloom.</em></span></span></h2>
     <p data-reveal class="d2">One client at a time. No rush, no queue &mdash; just the studio, entirely yours.</p>
   </div>
 </section>
@@ -674,7 +700,7 @@
   <div class="booking__inner">
     <div>
       <div class="eyebrow" data-reveal>Reserve Your Visit</div>
-      <h2 data-reveal class="d1">Your natural beauty,<br><em>booked in minutes.</em></h2>
+      <h2 data-reveal class="masked d1"><span class="line"><span>Your natural beauty,</span></span><span class="line"><span><em>booked in minutes.</em></span></span></h2>
       <p data-reveal class="d2">Instant confirmation, pay through the app, and a studio that's entirely yours for the appointment. Book directly through Fresha.</p>
       <a class="btn btn-cream d3" data-reveal href="https://www.fresha.com/a/fabeauty-private-studio-maroochydore-64-anzac-avenue-vn57rzg7" target="_blank" rel="noreferrer">Book Your Appointment <i class="arw" aria-hidden="true">→</i></a>
       <div class="booking__addr d4" data-reveal>
@@ -849,6 +875,29 @@
     }, { threshold: 0.15 });
     revealEls.forEach(el => io.observe(el));
   }
+
+  // ---- Social proof settles in: the review count climbs to its real value as
+  // the rating row reveals. The markup ships "184", so no-JS and reduced motion
+  // simply keep the finished number.
+  (function ratingCount() {
+    const el = document.getElementById('ratingCount');
+    const row = document.querySelector('.hero__rating');
+    if (!el || !row || reduced) return;
+    const target = 184, DUR = 1100;
+    function run() {
+      const t0 = performance.now();
+      (function frame(now) {
+        const p = Math.min((now - t0) / DUR, 1);
+        el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(frame);
+      })(t0);
+    }
+    if (row.classList.contains('is-in')) { run(); return; }
+    const mo = new MutationObserver(() => {
+      if (row.classList.contains('is-in')) { mo.disconnect(); run(); }
+    });
+    mo.observe(row, { attributes: true, attributeFilter: ['class'] });
+  })();
 
   // ---- Portfolio coverflow: 3D fan carousel, click a slide/dot/arrow to focus it ----
   (function coverflow() {
@@ -1033,9 +1082,13 @@
     let offset = 0, velocity = 0, dragging = false;
     let dragStartX = 0, dragStartOffset = 0, lastX = 0, lastTime = 0;
     let rafId = 0;
+    // The crawl breathes out to a stop under the pointer instead of snapping —
+    // an invitation to look, resumed the moment the cursor moves on.
+    let speedMul = 1, targetMul = 1;
 
     function tick() {
       const halfWidth = track.scrollWidth / 2;
+      speedMul += (targetMul - speedMul) * 0.06;
 
       if (!dragging) {
         if (Math.abs(velocity) > 0.1) {
@@ -1043,7 +1096,7 @@
           velocity *= 0.95;
         } else {
           velocity = 0;
-          offset -= SPEED;
+          offset -= SPEED * speedMul;
         }
       }
 
@@ -1058,6 +1111,11 @@
       track.style.transform = 'translate3d(0,0,0)';
     } else {
       rafId = requestAnimationFrame(tick);
+    }
+
+    if (matchMedia('(hover:hover)').matches) {
+      track.addEventListener('pointerenter', () => { targetMul = 0; });
+      track.addEventListener('pointerleave', () => { targetMul = 1; });
     }
 
     track.addEventListener('pointerdown', (e) => {
